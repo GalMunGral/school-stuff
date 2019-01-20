@@ -28,6 +28,7 @@ function F = nonc(x)
 % Nonquadratic objective function, nonlinear constraints
 % Input x is an array of variables and multipliers;
 % x(1) through x(5) are variables, x(6) through x(8) are multipliers
+
     % Compute the gradient of the objective function
     grad = [
         2*(x(1)-1) + 2*(x(1)-x(2));

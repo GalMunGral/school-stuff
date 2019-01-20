@@ -26,6 +26,7 @@ function F = qonc(x)
 % Quadratic objective function, non-linear constraints
 % Input x is an array of variables and multipliers;
 % x(1) through x(3) are variables, x(4) through x(5) are multipliers
+
     % Compute the gradient of the objective function
     grad = [
         4*2*x(1)-33;
