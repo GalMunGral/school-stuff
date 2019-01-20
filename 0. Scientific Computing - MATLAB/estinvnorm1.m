@@ -3,7 +3,7 @@ function n = estinvnorm1(A)
 % using my implementation of LTriSol subroutine
     [L,U] = lu(A);
     %First find y
-    v = MyLTriSol(transpose(U));
+    v = myltrisol(transpose(U));
     y = transpose(L)\v;
     %Use y to solve for z
     w = L\y;

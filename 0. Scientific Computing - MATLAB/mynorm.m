@@ -7,4 +7,3 @@ function norm = mynorm(A)
     end
     norm = max(abs_col_sums);
 end
-        
