@@ -3,7 +3,7 @@ function [] = gstest()
     correctseq = arrayfun(@exact, linspace(1,60,60));
     semilogy(correctseq);
     hold on;
-    seq = generateseq(60);
+    seq = genseq(60);
     semilogy(seq);
     grid on;
 end

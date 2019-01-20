@@ -1,4 +1,4 @@
-function seq = generateseq(size)
+function seq = genseq(size)
 % Generates Sequence
     seq(1) = 1/3;
     seq(2) = 1/12;
