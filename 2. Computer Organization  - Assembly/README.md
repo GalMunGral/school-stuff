@@ -1,1 +1,1 @@
-![circuit](_circuit_.png)
+![circuit](https://galmungral.github.io/circuit.png)
