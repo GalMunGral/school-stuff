@@ -9,4 +9,3 @@ function n = estinvnorm2(A)
     end
     n = max(norms);
 end
-        
