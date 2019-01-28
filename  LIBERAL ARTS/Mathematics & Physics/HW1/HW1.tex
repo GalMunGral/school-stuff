@@ -7,44 +7,44 @@
 \maketitle
 \section{}
 \subsection*{a}
-If $\Delta s^2 = 0$ then $\Delta t = \sqrt{\Delta x^2 + \Delta y^2 + \Delta z^2}$. A particle that travels $\Delta x^\alpha$ travels at the speed of light. And since the speed of light is constant in all reference frames, in another coordinate system $x^{\alpha'}$, it still travels at the speed of light, that is, $\Delta t' = \sqrt{\Delta x'^2 + \Delta y'^2 + \Delta z'^2}$. In other words, $\Delta s'^2 = 0$.
+If $\Delta s^2 = 0$ for a particle then $\Delta t^2 = \Delta x^2 + \Delta y^2 + \Delta z^2$, which means that it travels at the speed of light in $x^\alpha$ coordinates. Since the speed of light is constant in all reference frames, under another coordinate system $x^{\alpha'}$ it still travels at the speed of light, that is, $\Delta t'^2 = \Delta x'^2 + \Delta y'^2 + \Delta z'^2$ and therefore $\Delta s'^2 = 0$.
 \subsection*{b}
-Expressing $Q$ in terms of $\Delta x^\alpha$ gives another quadratic form:
+Expressing $Q$ in terms of $\Delta x^\alpha$:
 \[ Q = \eta_{\alpha'\beta'}\Delta x^{\alpha'} \Delta x^{\beta'}  
 	= \eta_{\alpha'\beta'} \Lambda^{\alpha'}{}_\alpha \Delta x^\alpha  \Lambda^{\beta'}{}_\beta \Delta x^\beta
 	= \Big(\Lambda^{\alpha'}{}_\alpha\Lambda^{\beta'}{}_\beta\eta_{\alpha'\beta'}\Big) \Delta x^\alpha \Delta x^\beta
 	= \phi_{\alpha\beta}\Delta x^\alpha \Delta x^\beta \]
-On the light cone $\Delta s^2 = 0$. And from the result of (a), $Q = \Delta s'^2 = \Delta s^2 = 0$
+
 \subsection*{c}
-On the intersection $Q = 0$ everywhere. By spherical symmetry in the spatial components of $\Delta x^\alpha$, $Q$ must be invariant under a reverse of sign of any spatial coordinate, therefore all cross terms are eliminated. $Q$ must also be invariant under a permutation of spatial coordinates, so the remaining $\Delta x^2, \Delta y^2, \Delta z^2$ must have the same coefficient. Therefore the general form is 
+On the intersection $Q = 0$ identically. By spherical symmetry, $Q$ must be invariant under (spatial) reflections, therefore all cross terms, which would change signs under a reflection, are eliminated; $Q$ must also be invariant under (spatial) rotations, so the remaining $\Delta x^2, \Delta y^2, \Delta z^2$ must have the same coefficient as they are indistinguishable. The general form satisfying these requirements is 
 \[ Q = c_1\Delta t^2 + c_2(\Delta x^2 + \Delta y^2 + \Delta z^2) \]
 \subsection*{d}
-On the intersection, which lies on the light cone, $\Delta t^2 = \Delta x^2$,
+Since the intersection lies on the light cone, $\Delta t^2 = \Delta x^2 + 0 + 0$,
 \[ Q = c_1\Delta t^2 + c_2 \Delta x^2 = (c_1  + c_2) \Delta t^2 = 0 \quad\Rightarrow\quad c_1 = -c_2\]
-\[ Q = c_2(-\Delta t ^2 +\Delta x^2 + \Delta y^2 + \Delta z^2) = c_2\eta_{\alpha\beta}\Delta x^\alpha \Delta x^\beta \]
+\[ \Rightarrow\quad Q = c_2(-\Delta t ^2 +\Delta x^2 + \Delta y^2 + \Delta z^2) = c_2\eta_{\alpha\beta}\Delta x^\alpha \Delta x^\beta \]
 \subsection*{e}
-The constant $c_2$ applies to transformations between any two coordinate systems, including the trivial one between one coordinate system and itself, therefore $c_2$ must equal $1$.
+The constant $c_2$ applies to transformations between any two frames, which certainly include the trivial transformation from one frame to itself, therefore $c_2$ must equal $1$.
 
 \section{}
 \subsection*{a}
-Rename the dummy indices, and apply the definition of symmetric/antisymmetric tensors:
+Renaming the dummy indices,
 \[ A_{\mu\nu}S^{\mu\nu} = A_{\nu\mu}S^{\nu\mu} = (-A_{\mu\nu})S^{\mu\nu}
 	\quad\Rightarrow\quad A_{\mu\nu}S^{\mu\nu} = 0 \]
 \subsection*{b}
 Using the same trick as above,
 \[ V^{\nu\mu}A_{\mu\nu} = V^{\mu\nu}A_{\nu\mu} = - V^{\mu\nu}A_{\mu\nu}
-	\quad\Rightarrow\quad \frac{1}{2}\Big( V^{\mu\nu}A_{\mu\nu} - V^{\nu\mu}A_{\mu\nu}\Big) =  V^{\mu\mu}A_{\mu\nu}  \]
+	\quad\Rightarrow\quad \frac{1}{2}\Big( V^{\mu\nu}A_{\mu\nu} - V^{\nu\mu}A_{\mu\nu}\Big) =  V^{\mu\nu}A_{\mu\nu}  \]
 \[ V^{\nu\mu}S_{\mu\nu} = V^{\mu\nu}S_{\nu\mu} = V^{\mu\nu}S_{\mu\nu}
-	\quad\Rightarrow\quad \frac{1}{2}\Big( V^{\mu\nu}S_{\mu\nu} + V^{\nu\mu}S_{\mu\nu}\Big) =  V^{\mu\mu}S_{\mu\nu}  \]
+	\quad\Rightarrow\quad \frac{1}{2}\Big( V^{\mu\nu}S_{\mu\nu} + V^{\nu\mu}S_{\mu\nu}\Big) =  V^{\mu\nu}S_{\mu\nu}  \]
 \subsection*{c}
-When acting on (co)vectors, the tensor produces a scalar, which is invariant under transformations: 
+A tensor acting on vectors and covectors produces a scalar, which is invariant under transformations: 
 \begin{align*}
 	 T^{\alpha'}{}_{\beta'}{}^{\gamma'}u_{\alpha'}v^{\beta'}w_{\gamma'} 
 	&= T^{\alpha}{}_{\beta}{}^{\gamma}u_{\alpha}v^{\beta}w_{\gamma}\\
-	&= T^{\alpha}{}_{\beta}{}^{\gamma}\Lambda^{\alpha'}{}_{\alpha} u_{\alpha'}\Lambda^{\beta}{}_{\beta'}v^{\beta'} \Lambda^{\gamma'}{}_{\gamma}w_{\gamma} \\
-	&= \Big(\Lambda^{\alpha'}{}_{\alpha} \Lambda^{\beta}{}_{\beta'} \Lambda^{\gamma'}{}_{\gamma} T^{\alpha}{}_{\beta}{}^{\gamma}\Big) u_{\alpha'}v^{\beta'} w_{\gamma}
+	&= T^{\alpha}{}_{\beta}{}^{\gamma}\Lambda^{\alpha'}{}_{\alpha} u_{\alpha'}\Lambda^{\beta}{}_{\beta'}v^{\beta'} \Lambda^{\gamma'}{}_{\gamma}w_{\gamma'} \\
+	&= \Big(\Lambda^{\alpha'}{}_{\alpha} \Lambda^{\beta}{}_{\beta'} \Lambda^{\gamma'}{}_{\gamma} T^{\alpha}{}_{\beta}{}^{\gamma}\Big) u_{\alpha'}v^{\beta'} w_{\gamma'}
 \end{align*}
-Since this holds true for any (co)vectors, $T^{\alpha'}{}_{\beta'}{}^{\gamma'}= \Lambda^{\alpha'}{}_{\alpha} \Lambda^{\beta}{}_{\beta'} \Lambda^{\gamma'}{}_{\gamma} T^{\alpha}{}_{\beta}{}^{\gamma}$.
+Since this holds for any vectors and covectors, $T^{\alpha'}{}_{\beta'}{}^{\gamma'}= \Lambda^{\alpha'}{}_{\alpha} \Lambda^{\beta}{}_{\beta'} \Lambda^{\gamma'}{}_{\gamma} T^{\alpha}{}_{\beta}{}^{\gamma}$.
 \subsection*{d}
 \[g_{\alpha\beta}g^{\beta\sigma}g^{\alpha\gamma} = \delta_{\alpha}^\sigma g^{\alpha\gamma} = g^{\sigma\gamma}\]
 \[g_{\sigma\beta} g_{\gamma\alpha} g^{\alpha\beta} = g_{\sigma\beta} \delta_{\gamma}^\beta  = g_{\sigma\gamma}\]
