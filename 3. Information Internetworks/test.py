@@ -14,4 +14,4 @@ if self.t > self.missile.guidance_delay:
     # Offset the velocity perpendicular to e_ to prevent drifting
     dir_ = normalize(e_)
     perp_v_ = self.missile.v_ - np.dot(self.missile.v_, dir_) * dir_
-    e_ = e_ - perp_v_ * np.linalg.norm(e_) / np.linalg.norm(self.missile.v_
+    e_ = e_ - perp_v_ * np.linalg.norm(e_) / np.dot(self.missile.v_, normalize(e_))
