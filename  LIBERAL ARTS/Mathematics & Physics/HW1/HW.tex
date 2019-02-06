@@ -32,13 +32,13 @@ g^{\alpha\beta}{}_{,\gamma} &=\Big( g^{\alpha\nu}g^{\beta\mu}g_{\mu\nu}\Big)_{,\
 = - g^{\alpha\nu}g^{\beta\mu}g_{\mu\nu}{}_{,\gamma} 
 \end{align*}
 \subsection*{b}
-From the two identities we can derive the formula ($A'$ denotes $dA/d\epsilon$)
-\begin{align*} \frac{d}{d\epsilon}A &=  \lim_{\epsilon \rightarrow 0} \frac{\det(A + A'\epsilon + O(\epsilon^2)) - \det(A)}{\epsilon}\\
-	&= \lim_{\epsilon \rightarrow 0} \frac{\det(A(I + A^{-1}A'\epsilon)) - \det(A)}{\epsilon} \\
-	&=  \lim_{\epsilon \rightarrow 0} \frac{\det(A)\det(I + A^{-1}A'\epsilon) - \det(A)}{\epsilon} \\
-	&=  \det(A) \lim_{\epsilon \rightarrow 0} \frac{\det(I + A^{-1}A'\epsilon) - 1}{\epsilon} \\
-	&=  \det(A) \lim_{\epsilon \rightarrow 0} \frac{1 + \tr(A^{-1}A')\epsilon + O(\epsilon^2) - 1}{\epsilon} \\
-	&=  \det(A) \tr(A^{-1}A') \\
+From the two identities we can derive the formula:
+\begin{align*} \frac{d}{d\epsilon}\det(A) &=  \lim_{\epsilon \rightarrow 0} \frac{\det(A + \epsilon \frac{d}{d\epsilon}A + O(\epsilon^2)) - \det(A)}{\epsilon}\\
+	&= \lim_{\epsilon \rightarrow 0} \frac{\det(A(I + \epsilon A^{-1}\frac{d}{d\epsilon}A)) - \det(A)}{\epsilon} \\
+	&=  \lim_{\epsilon \rightarrow 0} \frac{\det(A)\det(I + \epsilon A^{-1}\frac{d}{d\epsilon}A) - \det(A)}{\epsilon} \\
+	&=  \det(A) \lim_{\epsilon \rightarrow 0} \frac{\det(I + \epsilon A^{-1}\frac{d}{d\epsilon}A) - 1}{\epsilon} \\
+	&=  \det(A) \lim_{\epsilon \rightarrow 0} \frac{1 + \epsilon \tr(A^{-1}\frac{d}{d\epsilon}A) + O(\epsilon^2) - 1}{\epsilon} \\
+	&=  \det(A) \tr(A^{-1}\frac{d}{d\epsilon}A) \\
 \end{align*}
 Apply the formula to $g_{\mu\nu}$, replacing $d/d\epsilon$ with $\partial_\alpha$
 \[ g_{,\alpha} = g \cdot \tr(g^{\sigma\mu}g_{\mu\nu,\alpha}) = g g^{\nu\mu}g_{\mu\nu,\alpha} \]
@@ -64,9 +64,7 @@ LHS &= A^\alpha{}_{,\alpha} + \Gamma^{\alpha}_{\alpha\lambda}A^\lambda \\
 &= A^\alpha{}_{,\alpha} + \frac{1}{2}\Big(g^{\alpha\beta}g_{\beta\alpha,\lambda} + g^{\alpha\beta}g_{\beta\lambda, \alpha} -  g^{\alpha\beta}g_{\alpha\lambda,\beta}\Big)A^\lambda \\
 &= A^\alpha{}_{,\alpha} + \frac{1}{2}\Big(g^{\alpha\beta}g_{\beta\alpha,\lambda} + \cancel{g^{\alpha\beta}g_{\beta\lambda, \alpha}} -  \cancel{g^{\beta\alpha}g_{\beta\lambda,\alpha}} \Big)A^\lambda  \\
 &= A^\alpha{}_{,\alpha} + \frac{1}{2}g^{\alpha\beta}g_{\beta\alpha,\lambda}A^\lambda \\
-&= A^\alpha{}_{,\alpha} + \frac{1}{2}g^{\mu\nu}g_{\mu\nu,\alpha}A^\alpha 
-\end{align*}
-\begin{align*}
+&= A^\alpha{}_{,\alpha} + \frac{1}{2}g^{\mu\nu}g_{\mu\nu,\alpha}A^\alpha \\\\
 RHS &= (-g)^{-1/2}\Big[(-g)^{1/2}A^\alpha\Big]_{,\alpha} \\
 &= (-g)^{-1/2}\Big[(-g)^{1/2}A^\alpha{}_{,\alpha} + (-g)^{1/2}_{,\alpha}A^\alpha \Big] \\
 & = A^\alpha{}_{,\alpha} - \frac{1}{2}(-g)^{-1/2} (-g)^{-1/2}g_{,\alpha}A^\alpha \\ 
@@ -74,11 +72,11 @@ RHS &= (-g)^{-1/2}\Big[(-g)^{1/2}A^\alpha\Big]_{,\alpha} \\
 & = A^\alpha{}_{,\alpha} + \frac{1}{2}g^{\mu\nu}g_{\mu\nu,\alpha} A^\alpha = LHS \\ 
 \end{align*}
 \subsection*{e}
+Since $g = \det(g_{\mu\nu}) = \prod \lambda_i = -1 \cdot 1 \cdot 1 \cdot 1 = -1$ is constant,
 \begin{align*}
 \epsilon_{\alpha\beta\gamma\delta;\mu} = \Big((-g)^{1/2}\tilde{\epsilon}_{\alpha\beta\gamma\delta}\Big)_{;\mu}
 = (-g)^{1/2}_{;u}\tilde{\epsilon}_{\alpha\beta\gamma\delta} = 0
 \end{align*}
-since $g = \det(g_{\mu\nu}) = \prod \lambda_i = -1 \cdot 1 \cdot 1 \cdot 1 = -1$ is constant
 \section{}
 \subsection*{a}
 Since $u_\alpha u^\alpha  = -1$,
