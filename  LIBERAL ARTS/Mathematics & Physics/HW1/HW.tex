@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{undertilde, amsmath, cancel}
+\DeclareMathOperator{\tr}{tr}
+\title{PHYS 7125 Homework 2}
+\author{Wenqi He}
+\begin{document}
+\maketitle
+\section{}
+The local flatness property states that for each point $p$ on the manifold there exists a change of coordinates such that the metric $g_{\mu\nu}$ can be transformed into a $g_{\mu'\nu'}$ that satisfies: (i) $g_{\mu'\nu'} = \eta_{\mu'\nu'}$ and (ii) $g_{\mu'\nu',\sigma} = 0$ at point $p$. This can be shown by a Taylor expansion of $g_{\mu'\nu'}$ to the first order:
+\[ g_{\mu'\nu'} = \frac{\partial x^\mu}{\partial x^{\mu'}}\frac{\partial x^\nu}{\partial x^{\nu'}} g_{\mu\nu} \]
+\[ = \Big(x^\mu_{,\mu'} x^\nu_{,\nu'} g_{\mu\nu}\Big)\Big\rvert_p
+	+ \Bigg( x^\mu_{,\mu'\lambda} x^\nu_{,\nu'} g_{\mu\nu}
+	+ x^\mu_{,\mu'}x^\nu_{,\nu'\lambda}g_{\mu\nu}
+	+ x^\mu_{,\mu'}x^\nu_{,\nu'} g_{\mu\nu,\lambda}\Bigg)\Big\rvert_p \epsilon + O(\epsilon^2) \]
+The requirement is that 
+\[ \Big(x^\mu_{,\mu'} x^\nu_{,\nu'} g_{\mu\nu}\Big)\Big\rvert_p = \eta_{\mu'\nu'} \]
+\[ \Bigg( x^\mu_{,\mu'\lambda} x^\nu_{,\nu'} g_{\mu\nu}
+	+ x^\mu_{,\mu'}x^\nu_{,\nu'\lambda}g_{\mu\nu}
+	+ x^\mu_{,\mu'}x^\nu_{,\nu'} g_{\mu\nu,\lambda}\Bigg)\Big\rvert_p = 0 \]
+The first equation has $16$ variables in $\partial x^\mu/\partial x^{\mu'}$ and $10$ equations, one for each indepedent entry of the metric, and the remaining 6 degrees of freedom exactly matches the dimension of the Lorentz group, under which the metric is preserved. Now that $\partial x^\mu/\partial x^{\mu'}$ is determined, the second equation will only have $4 \cdot 10 = 40$ variables in $\partial^2x^\mu/\partial x^{\mu'}\partial x^\lambda$ (partial derivatives commute) and coincidentally $10 \cdot 4 = 40$ equations corresponding to the entries of $g_{\mu\nu,\lambda}$ (metric is symmetric by definition), so the system is uniquely determined, which proves that such transformation always exists.
+
+\section{}
+\subsection*{a}
+\begin{align*}
+g^{\alpha\beta}{}_{,\gamma} &=\Big( g^{\alpha\nu}g^{\beta\mu}g_{\mu\nu}\Big)_{,\gamma} \\
+&= g^{\alpha\nu}{}_{,\gamma}g^{\beta\mu}g_{\mu\nu} + g^{\alpha\nu}g^{\beta\mu}{}_{,\gamma}g_{\mu\nu} + g^{\alpha\nu}g^{\beta\mu}g_{\mu\nu}{}_{,\gamma} \\
+&= 2g^{\alpha\nu}g^{\beta\mu}{}_{,\gamma}g_{\mu\nu} + g^{\alpha\nu}g^{\beta\mu}g_{\mu\nu}{}_{,\gamma} \\
+&= 2g^{\alpha\nu}\Big( g^{\beta\mu}{}_{,\gamma}g_{\mu\nu} + g^{\beta\mu}g_{\mu\nu}{}_{,\gamma}\Big) - g^{\alpha\nu}g^{\beta\mu}g_{\mu\nu}{}_{,\gamma} \\
+&= 2g^{\alpha\nu}\Big(g^{\beta\mu}g_{\mu\nu}\Big)_{,\gamma} - g^{\alpha\nu}g^{\beta\mu}g_{\mu\nu}{}_{,\gamma} \\
+&= \cancel{2g^{\alpha\nu}\delta^\beta_{\nu,\gamma}} - g^{\alpha\nu}g^{\beta\mu}g_{\mu\nu}{}_{,\gamma} 
+= - g^{\alpha\nu}g^{\beta\mu}g_{\mu\nu}{}_{,\gamma} 
+\end{align*}
+\subsection*{b}
+From the two identities we can derive the formula ($A'$ denotes $dA/d\epsilon$)
+\begin{align*} \frac{d}{d\epsilon}A &=  \lim_{\epsilon \rightarrow 0} \frac{\det(A + A'\epsilon + O(\epsilon^2)) - \det(A)}{\epsilon}\\
+	&= \lim_{\epsilon \rightarrow 0} \frac{\det(A(I + A^{-1}A'\epsilon)) - \det(A)}{\epsilon} \\
+	&=  \lim_{\epsilon \rightarrow 0} \frac{\det(A)\det(I + A^{-1}A'\epsilon) - \det(A)}{\epsilon} \\
+	&=  \det(A) \lim_{\epsilon \rightarrow 0} \frac{\det(I + A^{-1}A'\epsilon) - 1}{\epsilon} \\
+	&=  \det(A) \lim_{\epsilon \rightarrow 0} \frac{1 + \tr(A^{-1}A')\epsilon + O(\epsilon^2) - 1}{\epsilon} \\
+	&=  \det(A) \tr(A^{-1}A') \\
+\end{align*}
+Apply the formula to $g_{\mu\nu}$, replacing $d/d\epsilon$ with $\partial_\alpha$
+\[ g_{,\alpha} = g \cdot \tr(g^{\sigma\mu}g_{\mu\nu,\alpha}) = g g^{\nu\mu}g_{\mu\nu,\alpha} \]
+\subsection*{c}
+From right to left
+\begin{align*}
+&\indent -(-g)^{-1/2}\Big[g^{\alpha\beta}(-g)^{1/2}\Big]_{,\beta} \\
+&= -(-g)^{-1/2}\Big[g^{\alpha\beta}{}_{,\beta}(-g)^{1/2} + g^{\alpha\beta}(-g)^{1/2}_{,\beta} \Big]\\
+&= -(-g)^{-1/2}\Big[g^{\alpha\beta}{}_{,\beta}(-g)^{1/2} - \frac{1}{2}g^{\alpha\beta}(-g)^{-1/2}g_{,\beta} \Big]\\
+&= - g^{\alpha\beta}{}_{,\beta} + \frac{1}{2}g^{\alpha\beta}(-g)^{-1}g_{,\beta}\\
+&= g^{\mu\beta}g^{\nu\alpha}g_{\mu\nu,\beta} + \frac{1}{2}g^{\alpha\beta}(-g)^{-1}gg^{\mu\nu}g_{\mu\nu,\beta}\\
+&= g^{\mu\beta}g^{\nu\alpha}g_{\mu\nu,\beta} - \frac{1}{2}g^{\alpha\beta}g^{\mu\nu}g_{\mu\nu,\beta}\\
+&= \frac{1}{2}\Big(g^{\mu\beta}g^{\nu\alpha}g_{\mu\nu,\beta}  + g^{\mu\beta}g^{\nu\alpha}g_{\mu\nu,\beta} - g^{\alpha\beta}g^{\mu\nu}g_{\mu\nu,\beta} \Big) \\
+&= \frac{1}{2}\Big(g^{\mu\nu}g^{\beta\alpha}g_{\mu\beta, \nu}  + g^{\nu\beta}g^{\mu\alpha}g_{\nu\mu,\beta} - g^{\alpha\beta}g^{\mu\nu}g_{\mu\nu,\beta} \Big) \\
+&= \frac{1}{2}\Big(g^{\mu\nu}g^{\beta\alpha}g_{\mu\beta, \nu}  + g^{\nu\mu}g^{\beta\alpha}g_{\nu\beta,\mu} - g^{\alpha\beta}g^{\mu\nu}g_{\mu\nu,\beta} \Big) \\
+&= g^{\mu\nu}\cdot \frac{1}{2}g^{\alpha\beta} \Big(g_{\beta\mu, \nu}  +g_{\beta\nu,\mu} - g_{\mu\nu,\beta} \Big)
+= g^{\mu\nu} \Gamma^\alpha_{\mu\nu}
+\end{align*}
+\subsection*{d}
+\begin{align*}
+LHS &= A^\alpha{}_{,\alpha} + \Gamma^{\alpha}_{\alpha\lambda}A^\lambda \\
+&= A^\alpha{}_{,\alpha} + \frac{1}{2}g^{\alpha\beta}\Big(g_{\beta\alpha,\lambda} + g_{\beta\lambda, \alpha} - g_{\alpha\lambda,\beta}\Big)A^\lambda \\
+&= A^\alpha{}_{,\alpha} + \frac{1}{2}\Big(g^{\alpha\beta}g_{\beta\alpha,\lambda} + g^{\alpha\beta}g_{\beta\lambda, \alpha} -  g^{\alpha\beta}g_{\alpha\lambda,\beta}\Big)A^\lambda \\
+&= A^\alpha{}_{,\alpha} + \frac{1}{2}\Big(g^{\alpha\beta}g_{\beta\alpha,\lambda} + \cancel{g^{\alpha\beta}g_{\beta\lambda, \alpha}} -  \cancel{g^{\beta\alpha}g_{\beta\lambda,\alpha}} \Big)A^\lambda  \\
+&= A^\alpha{}_{,\alpha} + \frac{1}{2}g^{\alpha\beta}g_{\beta\alpha,\lambda}A^\lambda \\
+&= A^\alpha{}_{,\alpha} + \frac{1}{2}g^{\mu\nu}g_{\mu\nu,\alpha}A^\alpha 
+\end{align*}
+\begin{align*}
+RHS &= (-g)^{-1/2}\Big[(-g)^{1/2}A^\alpha\Big]_{,\alpha} \\
+&= (-g)^{-1/2}\Big[(-g)^{1/2}A^\alpha{}_{,\alpha} + (-g)^{1/2}_{,\alpha}A^\alpha \Big] \\
+& = A^\alpha{}_{,\alpha} - \frac{1}{2}(-g)^{-1/2} (-g)^{-1/2}g_{,\alpha}A^\alpha \\ 
+& = A^\alpha{}_{,\alpha} + \frac{1}{2}(g)^{-1}gg^{\mu\nu}g_{\mu\nu,\alpha} A^\alpha \\ 
+& = A^\alpha{}_{,\alpha} + \frac{1}{2}g^{\mu\nu}g_{\mu\nu,\alpha} A^\alpha = LHS \\ 
+\end{align*}
+\subsection*{e}
+\begin{align*}
+\epsilon_{\alpha\beta\gamma\delta;\mu} = \Big((-g)^{1/2}\tilde{\epsilon}_{\alpha\beta\gamma\delta}\Big)_{;\mu}
+= (-g)^{1/2}_{;u}\tilde{\epsilon}_{\alpha\beta\gamma\delta} = 0
+\end{align*}
+since $g = \det(g_{\mu\nu}) = \prod \lambda_i = -1 \cdot 1 \cdot 1 \cdot 1 = -1$ is constant
+\section{}
+\subsection*{a}
+Since $u_\alpha u^\alpha  = -1$,
+\[
+	P_{\alpha\beta}v^\beta u^\alpha = g_{\alpha\beta} v^\beta u^\alpha +  u_{\alpha}u_{\beta} v^\beta u^\alpha
+	= v_\alpha u^\alpha - u_\beta v^\beta = 0
+\]
+\subsection*{b}
+From (a), $u^\beta v_{\perp_\beta} = u_{\beta} v_{\perp}^\beta = 0$, therefore
+\[
+	P_{\alpha\beta}v_{\perp}^\beta =  g_{\alpha\beta} v_{\perp}^\beta +  u_{\alpha}u_{\beta} v_{\perp}^\beta
+	=  g_{\alpha\beta} v_{\perp}^\beta +  0 = v_{\perp\alpha}
+\]
+\subsection*{c}
+\[
+	P_{\alpha\beta} := g_{\alpha\beta}  - ({q_\lambda q^\lambda})^{-1} q_{\alpha}q_{\beta}
+\]
+\textit{Proof:} Carrying out the same calculation as above,
+\[  P_{\alpha\beta}v^\beta q^\alpha = g_{\alpha\beta} v^\beta q^\alpha - ({q_\lambda q^\lambda})^{-1} q_{\alpha}q_{\beta} v^\beta q^\alpha = v_\alpha q^\alpha - q_\beta v^\beta = 0 \]
+\[
+	P_{\alpha\beta}v_{\perp}^\beta =  g_{\alpha\beta} v_{\perp}^\beta  - ({q_\lambda q^\lambda})^{-1} q_{\alpha}q_{\beta}  v_{\perp}^\beta
+	=  g_{\alpha\beta} v_{\perp}^\beta - 0 = v_{\perp\alpha}
+\]
+\subsection*{d}
+The candidates for the projection tensor should take the form $Ag_{\alpha\beta} + Bk_\alpha k_\beta$. In order for the projection to be orthogonal,
+\[  \Big(Ag_{\alpha\beta} + Bk_\alpha k_\beta\Big)v^\beta k^\alpha = Av_\alpha k^\alpha + 0 = 0 \]
+Since $v_\alpha k^\alpha \neq 0$ in general, $A$ must be zero. However, in order that $P_{\alpha\beta}v_\perp^\beta = v_{\perp\alpha}$,
+\[ \Big(Ag_{\alpha\beta} + Bk_\alpha k_\beta\Big)v_\perp^\beta = Av_{\perp\alpha} + 0 = v_{\perp\alpha} \]
+$A$ must equal $1$, therefore there is no unique projection tensor, which must satisfy both conditions.
+
+\section{}
+\subsection*{a}
+\begin{align*}
+ \nabla_{\utilde{u}}w_\mu &= \nabla_{\frac{d}{d\tau}}w_\mu = \nabla_{\frac{dx^\alpha}{d\tau}\partial_\alpha}w_\mu
+= \frac{dx^\alpha}{d\tau} \nabla_{\partial_\alpha}w_\mu
+= \frac{dx^\alpha}{d\tau} \Big(\partial_\alpha w_\mu - \Gamma^{\beta}_{\alpha\mu}w_\beta \Big) \\
+&= \frac{dw_\mu}{d\tau} - \Gamma^\beta_{\alpha\mu}u^\alpha w_\beta = 0
+\end{align*}
+\subsection*{b}
+Since $u_\mu u^\mu \equiv -1$, it must be true that $\nabla_{\utilde{u}} \Big(u_\mu u^\mu\Big) \equiv 0$. Using the answer above, indeed
+\begin{align*}
+ \nabla_{\utilde{u}} \Big(u_\mu u^\mu\Big) 
+&= u_\mu \nabla_{\utilde{u}} u^\mu + u^\mu \nabla_{\utilde{u}} u_\mu 
+=  u_\mu \Big(\frac{du^\mu}{d\tau} + \Gamma^\mu_{\alpha\beta}u^\alpha u^\beta \Big)
+	+ u^\mu \Big(  \frac{du_\mu}{d\tau} - \Gamma^\beta_{\alpha\mu}u^\alpha u_\beta \Big)\\
+&=  u_\mu\frac{du^\mu}{d\tau} + \cancel{\Gamma^\mu_{\alpha\beta}u_\mu u^\alpha u^\beta}
+	+  u^\mu  \frac{du_\mu}{d\tau} - \cancel{\Gamma^\beta_{\alpha\mu}u^\mu  u^\alpha u_\beta}\\
+&= \frac{d}{d\tau}\Big(u_\mu u^\mu \Big) = 0
+\end{align*}
+\subsection*{c}
+Suppose $\lambda$ is an affine parameter for a null-geodesic, and $\sigma$ non-affine:
+\begin{align*}
+ \nabla_{\utilde{u}}u^\mu &= \nabla_{\frac{d}{d\sigma}}\frac{dx^\mu}{d\sigma} 
+	= \nabla_{\frac{d\lambda}{d\sigma}\frac{d}{d\lambda}}\Big(\frac{d\lambda}{d\sigma}\frac{dx^\mu}{d\lambda}\Big)
+	= \frac{d\lambda}{d\sigma} \nabla_{\frac{d}{d\lambda}}\Big(\frac{d\lambda}{d\sigma}\frac{dx^\mu}{d\lambda}\Big) \\
+	&= \frac{d\lambda}{d\sigma}\frac{d\lambda}{d\sigma} \cancel{\nabla_{\frac{d}{d\lambda}}\frac{dx^\mu}{d\lambda}}
+	+ \frac{d\lambda}{d\sigma} \frac{dx^\mu}{d\lambda}\frac{d}{d\lambda}\frac{d\lambda}{d\sigma} \\
+	&= \frac{d}{d\lambda}\frac{d\lambda}{d\sigma} u^\mu =: - \kappa u^\mu
+\end{align*}
+where $\nabla_{\frac{d}{d\lambda}}\frac{dx^\mu}{d\lambda} = 0$ by the definition of affineness.
+\end{document}
