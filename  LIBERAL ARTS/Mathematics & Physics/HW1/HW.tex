@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[margin=1.2in]{geometry}
+\usepackage[margin=1.1in]{geometry}
 \usepackage{undertilde, amsmath, cancel}
 \DeclareMathOperator{\tr}{tr}
 \title{PHYS 7125 Homework 2}
@@ -18,7 +18,7 @@ The requirement is that
 \[ \Bigg( x^\mu_{,\mu'\lambda} x^\nu_{,\nu'} g_{\mu\nu}
 	+ x^\mu_{,\mu'}x^\nu_{,\nu'\lambda}g_{\mu\nu}
 	+ x^\mu_{,\mu'}x^\nu_{,\nu'} g_{\mu\nu,\lambda}\Bigg)\Big\rvert_p = 0 \]
-The first equation has $16$ variables in $\partial x^\mu/\partial x^{\mu'}$ and $10$ equations, one for each indepedent entry of the metric, and the remaining 6 degrees of freedom exactly matches the dimension of the Lorentz group, under which the metric is preserved. Now that $\partial x^\mu/\partial x^{\mu'}$ is determined, the second equation will only have $4 \cdot 10 = 40$ variables in $\partial^2x^\mu/\partial x^{\mu'}\partial x^\lambda$ (partial derivatives commute) and coincidentally $10 \cdot 4 = 40$ equations corresponding to the entries of $g_{\mu\nu,\lambda}$ (metric is symmetric by definition), so the system is uniquely determined, which proves that such transformation always exists.
+The first equation has $16$ variables in $\partial x^\mu/\partial x^{\mu'}$ and $10$ equations, one for each indepedent entry of the metric. The remaining 6 degrees of freedom exactly matches the dimension of the Lorentz group, under which the metric is preserved. Now that $\partial x^\mu/\partial x^{\mu'}$ is determined, the second equation, since partial derivatives commute, will only have $4 \cdot 10 = 40$ variables in $\partial^2x^\mu/\partial x^{\mu'}\partial x^\lambda$. Coincidentally, since metric is always symmetric, there are also $10 \cdot 4 = 40$ equations corresponding to the independent entries of $g_{\mu\nu,\lambda}$. The system is uniquely determined, and therefore such transformation always exists.
 
 \section{}
 \subsection*{a}
@@ -40,10 +40,10 @@ From the two identities we can derive the formula:
 	&=  \det(A) \lim_{\epsilon \rightarrow 0} \frac{1 + \epsilon \tr(A^{-1}\frac{d}{d\epsilon}A) + O(\epsilon^2) - 1}{\epsilon} \\
 	&=  \det(A) \tr(A^{-1}\frac{d}{d\epsilon}A) \\
 \end{align*}
-Apply the formula to $g_{\mu\nu}$, replacing $d/d\epsilon$ with $\partial_\alpha$
+Apply the formula to $g = \det g_{\mu\nu}$, replacing $d/d\epsilon$ with $\partial_\alpha$
 \[ g_{,\alpha} = g \cdot \tr(g^{\sigma\mu}g_{\mu\nu,\alpha}) = g g^{\nu\mu}g_{\mu\nu,\alpha} \]
 \subsection*{c}
-From right to left
+From right to left,
 \begin{align*}
 &\indent -(-g)^{-1/2}\Big[g^{\alpha\beta}(-g)^{1/2}\Big]_{,\beta} \\
 &= -(-g)^{-1/2}\Big[g^{\alpha\beta}{}_{,\beta}(-g)^{1/2} + g^{\alpha\beta}(-g)^{1/2}_{,\beta} \Big]\\
@@ -72,17 +72,40 @@ RHS &= (-g)^{-1/2}\Big[(-g)^{1/2}A^\alpha\Big]_{,\alpha} \\
 & = A^\alpha{}_{,\alpha} + \frac{1}{2}g^{\mu\nu}g_{\mu\nu,\alpha} A^\alpha = LHS \\ 
 \end{align*}
 \subsection*{e}
-Since $g = \det(g_{\mu\nu}) = \prod \lambda_i = -1 \cdot 1 \cdot 1 \cdot 1 = -1$ is constant,
 \begin{align*}
-\epsilon_{\alpha\beta\gamma\delta;\mu} = \Big((-g)^{1/2}\tilde{\epsilon}_{\alpha\beta\gamma\delta}\Big)_{;\mu}
-= (-g)^{1/2}_{;u}\tilde{\epsilon}_{\alpha\beta\gamma\delta} = 0
+\epsilon_{\alpha\beta\gamma\delta;\mu} &= \Big((-g)^{1/2}\tilde{\epsilon}_{\alpha\beta\gamma\delta}\Big)_{;\mu}
+	=(-g)^{1/2}_{,\mu}\tilde{\epsilon}_{\alpha\beta\gamma\delta} 
+	- (-g)^{1/2}\Big[\Gamma_{\alpha\mu}^{\lambda} \tilde{\epsilon}_{\lambda\beta\gamma\delta}
+	+ \Gamma_{\beta\mu}^{\lambda} \tilde{\epsilon}_{\alpha\lambda\gamma\delta}
+	+ \Gamma_{\gamma\mu}^{\lambda} \tilde{\epsilon}_{\alpha\beta\lambda\delta}
+	+ \Gamma_{\delta\mu}^{\lambda} \tilde{\epsilon}_{\alpha\beta\gamma\lambda}\Big]
 \end{align*}
+If indices are repeated, WLOG, we can suppose $\alpha = \beta$, then $\tilde{\epsilon}_{\alpha\beta\gamma\delta}  = 0$; the first term outside the brackets and the last two terms inside the bracket vanish, and also
+\[ \Gamma_{\alpha\mu}^{\lambda} \tilde{\epsilon}_{\lambda\beta\gamma\delta}
+	+ \Gamma_{\beta\mu}^{\lambda} \tilde{\epsilon}_{\alpha\lambda\gamma\delta} 
+= \Gamma_{\alpha\mu}^{\lambda} \tilde{\epsilon}_{\lambda\alpha\gamma\delta}
+	+ \Gamma_{\alpha\mu}^{\lambda} \tilde{\epsilon}_{\alpha\lambda\gamma\delta} = 0 \]
+So $\epsilon_{\alpha\beta\gamma\delta;\mu} = 0$ in this case. Now consider the case where all indices are distinct, then
+$\tilde{\epsilon}_{\lambda\beta\gamma\delta}$ (here $\lambda$ is a free index), vanishes whenever $\lambda \neq \alpha$.
+Same argument applies to all indices. WLOG, suppose $\alpha,\beta,\gamma,\delta = 0,1,2,3$. The first term on the right-hand side is
+\[ -\frac{1}{2}(-g)^{-1/2}g_{,\mu} \]
+Expand the the second term:
+\begin{align*}
+	\cdots &= \frac{1}{2}(-g)^{1/2}g^{\lambda\sigma} \Big(g_{\sigma0,\mu}+ g_{\sigma\mu,0} - g_{0\mu,\sigma}\Big) \tilde{\epsilon}_{\lambda123} + \frac{1}{2}(-g)^{1/2}g^{\lambda\sigma} \Big(g_{\sigma1,\mu}+ g_{\sigma\mu,1} - g_{1\mu,\sigma}\Big) \tilde{\epsilon}_{0\lambda23}\\
+	&\quad+ \frac{1}{2}(-g)^{1/2}g^{\lambda\sigma} \Big(g_{\sigma2\mu}+ g_{\sigma\mu,2} - g_{2\mu,\sigma}\Big) \tilde{\epsilon}_{01a\lambda3} + \frac{1}{2}(-g)^{1/2}g^{\lambda\sigma} \Big(g_{\sigma3,\mu}+ g_{\sigma\mu,3} - g_{3\mu,\sigma}\Big) \tilde{\epsilon}_{012\lambda}\\
+	&= \frac{1}{2}(-g)^{1/2}g^{0\sigma} \Big(g_{\sigma0,\mu}+ g_{\sigma\mu,0} - g_{0\mu,\sigma}\Big) + \frac{1}{2}(-g)^{1/2}g^{1\sigma} \Big(g_{\sigma1,\mu}+ g_{\sigma\mu,1} - g_{1\mu,\sigma}\Big) \\
+	&\quad+ \frac{1}{2}(-g)^{1/2}g^{2\sigma} \Big(g_{\sigma2,\mu}+ g_{\sigma\mu,2} - g_{2\mu,\sigma}\Big) + \frac{1}{2}(-g)^{1/2}g^{3\sigma} \Big(g_{\sigma3,\mu}+ g_{\sigma\mu,3} - g_{3\mu,\sigma}\Big)\\
+	&= \frac{1}{2} (-g)^{1/2} \Big( g^{\lambda\sigma}g_{\lambda\sigma,\mu} +\cancel{g^{\lambda\sigma}g_{\sigma\mu,\lambda}} + \cancel{g^{\lambda\sigma}g_{\lambda\mu,\sigma}}\Big)\\
+	&= - \frac{1}{2}(-g)^{-1/2}g_{,\mu}
+\end{align*}
+where the second to last line above regrouped the terms into a summation over dummy index $\lambda$ and also utilized the result from (b). 
+Two terms on the right-hand side exactly cancel out, therefore, $\epsilon_{\alpha\beta\gamma\delta;\mu}  = 0$.
 \section{}
 \subsection*{a}
 Since $u_\alpha u^\alpha  = -1$,
 \[
-	P_{\alpha\beta}v^\beta u^\alpha = g_{\alpha\beta} v^\beta u^\alpha +  u_{\alpha}u_{\beta} v^\beta u^\alpha
-	= v_\alpha u^\alpha - u_\beta v^\beta = 0
+	(P_{\alpha\beta}v^\beta) u^\alpha = g_{\alpha\beta} v^\beta u^\alpha +  u_{\alpha}u_{\beta} v^\beta u^\alpha
+	= v^\beta u_\beta - u_\beta v^\beta = 0
 \]
 \subsection*{b}
 From (a), $u^\beta v_{\perp_\beta} = u_{\beta} v_{\perp}^\beta = 0$, therefore
@@ -94,47 +117,52 @@ From (a), $u^\beta v_{\perp_\beta} = u_{\beta} v_{\perp}^\beta = 0$, therefore
 \[
 	P_{\alpha\beta} := g_{\alpha\beta}  - ({q_\lambda q^\lambda})^{-1} q_{\alpha}q_{\beta}
 \]
-\textit{Proof:} Carrying out the same calculation as above,
-\[  P_{\alpha\beta}v^\beta q^\alpha = g_{\alpha\beta} v^\beta q^\alpha - ({q_\lambda q^\lambda})^{-1} q_{\alpha}q_{\beta} v^\beta q^\alpha = v_\alpha q^\alpha - q_\beta v^\beta = 0 \]
+\textit{Proof:} Carrying out the same calculations:
+\[  (P_{\alpha\beta}v^\beta) q^\alpha = g_{\alpha\beta} v^\beta q^\alpha - \cancel{({q_\lambda q^\lambda})^{-1}} \cancel{q_{\alpha}}q_{\beta} v^\beta \cancel{q^\alpha} = v^\beta q_\beta - q_\beta v^\beta = 0 \]
 \[
-	P_{\alpha\beta}v_{\perp}^\beta =  g_{\alpha\beta} v_{\perp}^\beta  - ({q_\lambda q^\lambda})^{-1} q_{\alpha}q_{\beta}  v_{\perp}^\beta
-	=  g_{\alpha\beta} v_{\perp}^\beta - 0 = v_{\perp\alpha}
+	P_{\alpha\beta}v_{\perp}^\beta =  g_{\alpha\beta} v_{\perp}^\beta  - ({q_\lambda q^\lambda})^{-1} q_{\alpha}\cancel{q_{\beta}  v_{\perp}^\beta} = v_{\perp\alpha}
 \]
 \subsection*{d}
-The candidates for the projection tensor should take the form $Ag_{\alpha\beta} + Bk_\alpha k_\beta$. In order for the projection to be orthogonal,
-\[  \Big(Ag_{\alpha\beta} + Bk_\alpha k_\beta\Big)v^\beta k^\alpha = Av_\alpha k^\alpha + 0 = 0 \]
-Since $v_\alpha k^\alpha \neq 0$ in general, $A$ must be zero. However, in order that $P_{\alpha\beta}v_\perp^\beta = v_{\perp\alpha}$,
-\[ \Big(Ag_{\alpha\beta} + Bk_\alpha k_\beta\Big)v_\perp^\beta = Av_{\perp\alpha} + 0 = v_{\perp\alpha} \]
-$A$ must equal $1$, therefore there is no unique projection tensor, which must satisfy both conditions.
-
+Since the norm of a null vector is zero, the orthogonal projection cannot be constructed by substracting a parallel projection which involves a division by the norm, therefore the projection can only be expressed as an expansion w.r.t. the basis vectors orthogonal to $\utilde{k}$. Apart from $\utilde{k}$, which is orthogonal to itself, there must exist two additional linearly independent vectors to match the dimensionality. It can be shown that (i) orthogonal null vectors are colinear and (ii) null vectors cannot be orthogonal to time-like vectors, therefore the two vectors must be space-like, and we can perform the Gram-Schmidt process like above (and also normalization) to obtain two orthnormal space-like vectors. Finally, $k_\alpha k_\beta$ term must be excluded because if the projection produces a $k_\mu$ component, applying the projection twice will then eliminate it, violating $P(v_\perp) = v_\perp$. Therefore the projection tensor is
+\[ P_{\alpha\beta} = e_{(1)\alpha}e_{(1)\beta} + e_{(2)\alpha}e_{(2)\beta}\]
+Where $\utilde{e}_{(i)}$ are the orthonormal space-like basis vectors. It can be quickly verified that
+\[  \Big(e_{(1)\alpha}e_{(1)\beta} + e_{(2)\alpha}e_{(2)\beta}\Big) v^\beta k^\alpha = 0 \]
+and also
+\begin{align*}
+\Big(e_{(1)\alpha}e_{(1)\beta} + e_{(2)\alpha}e_{(2)\beta}\Big)v_\perp^\beta
+&=  \Big(e_{(1)\alpha}e_{(1)\beta} + e_{(2)\alpha}e_{(2)\beta}\Big)
+	\Big(e_{(1)}^\beta e_{(1)\sigma} + e_{(2)}^\beta e_{(2)\sigma}\Big)v^\sigma  \\
+&= \Big(e_{(1)\alpha} e_{(1)\sigma} + e_{(2)\alpha} e_{(2)\sigma}\Big)v^\sigma = v_{\perp\alpha}
+\end{align*}
+However the choice of $\{ \utilde{e}_{(i)} \}$ is not unique, which in general means that $P$ will not be unique. As an example, suppose the space-time is flat and consider $\utilde{k} = (1,1,0,0)$, $\utilde{e}_{(1)} = (1,1,1,0)$, $\utilde{e}_{(2)} = (1,1,0,1)$, $P_{\alpha\beta} = e_{(1)\alpha}e_{(1)\beta} + e_{(2)\alpha}e_{(2)\beta}$ only has integer components; however, we can also choose $\utilde{e}'_{(1)} = (1,1,\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$, $\utilde{e}'_{(2)} = (1,1, \frac{1}{\sqrt{2}},-\frac{1}{\sqrt{2}})$, then $P'_{\alpha\beta} = e'_{(1)\alpha}e'_{(1)\beta} + e'_{(2)\alpha}e'_{(2)\beta}$
+will contain irrational components.
 \section{}
 \subsection*{a}
 \begin{align*}
- \nabla_{\utilde{u}}w_\mu &= \nabla_{\frac{d}{d\tau}}w_\mu = \nabla_{\frac{dx^\alpha}{d\tau}\partial_\alpha}w_\mu
-= \frac{dx^\alpha}{d\tau} \nabla_{\partial_\alpha}w_\mu
-= \frac{dx^\alpha}{d\tau} \Big(\partial_\alpha w_\mu - \Gamma^{\beta}_{\alpha\mu}w_\beta \Big) \\
-&= \frac{dw_\mu}{d\tau} - \Gamma^\beta_{\alpha\mu}u^\alpha w_\beta = 0
+ \nabla_{\utilde{u}}u_\mu = \frac{dx^\alpha}{d\tau} \nabla_{\alpha}u_\mu
+= \frac{dx^\alpha}{d\tau} \Big(\partial_\alpha u_\mu - \Gamma^{\beta}_{\alpha\mu}u_\beta \Big)
+= \frac{du_\mu}{d\tau} - \Gamma^\beta_{\alpha\mu}u^\alpha u_\beta = 0
 \end{align*}
 \subsection*{b}
-Since $u_\mu u^\mu \equiv -1$, it must be true that $\nabla_{\utilde{u}} \Big(u_\mu u^\mu\Big) \equiv 0$. Using the answer above, indeed
+Since $u_\mu u^\mu$ is a scalar, its covariant derivatives reduces to ordinary derivatives. Indeed,
 \begin{align*}
  \nabla_{\utilde{u}} \Big(u_\mu u^\mu\Big) 
 &= u_\mu \nabla_{\utilde{u}} u^\mu + u^\mu \nabla_{\utilde{u}} u_\mu 
 =  u_\mu \Big(\frac{du^\mu}{d\tau} + \Gamma^\mu_{\alpha\beta}u^\alpha u^\beta \Big)
 	+ u^\mu \Big(  \frac{du_\mu}{d\tau} - \Gamma^\beta_{\alpha\mu}u^\alpha u_\beta \Big)\\
 &=  u_\mu\frac{du^\mu}{d\tau} + \cancel{\Gamma^\mu_{\alpha\beta}u_\mu u^\alpha u^\beta}
-	+  u^\mu  \frac{du_\mu}{d\tau} - \cancel{\Gamma^\beta_{\alpha\mu}u^\mu  u^\alpha u_\beta}\\
-&= \frac{d}{d\tau}\Big(u_\mu u^\mu \Big) = 0
+	+  u^\mu  \frac{du_\mu}{d\tau} - \cancel{\Gamma^\beta_{\alpha\mu}u^\mu  u^\alpha u_\beta}
+= \frac{d}{d\tau}\Big(u_\mu u^\mu \Big)
 \end{align*}
 \subsection*{c}
-Suppose $\lambda$ is an affine parameter for a null-geodesic, and $\sigma$ non-affine:
+Suppose $\lambda$ is an affine parameter for a null-geodesic and $\sigma = \sigma(\lambda)$ non-affine:
 \begin{align*}
  \nabla_{\utilde{u}}u^\mu &= \nabla_{\frac{d}{d\sigma}}\frac{dx^\mu}{d\sigma} 
 	= \nabla_{\frac{d\lambda}{d\sigma}\frac{d}{d\lambda}}\Big(\frac{d\lambda}{d\sigma}\frac{dx^\mu}{d\lambda}\Big)
 	= \frac{d\lambda}{d\sigma} \nabla_{\frac{d}{d\lambda}}\Big(\frac{d\lambda}{d\sigma}\frac{dx^\mu}{d\lambda}\Big) \\
-	&= \frac{d\lambda}{d\sigma}\frac{d\lambda}{d\sigma} \cancel{\nabla_{\frac{d}{d\lambda}}\frac{dx^\mu}{d\lambda}}
-	+ \frac{d\lambda}{d\sigma} \frac{dx^\mu}{d\lambda}\frac{d}{d\lambda}\frac{d\lambda}{d\sigma} \\
-	&= \frac{d}{d\lambda}\frac{d\lambda}{d\sigma} u^\mu =: - \kappa u^\mu
+	&= \frac{d\lambda}{d\sigma} \Big(\frac{d}{d\lambda}\frac{d\lambda}{d\sigma} \Big)\frac{dx^\mu}{d\lambda}
+	+ \frac{d\lambda}{d\sigma}\frac{d\lambda}{d\sigma} \cancel{\nabla_{\frac{d}{d\lambda}}\frac{dx^\mu}{d\lambda}} \\
+	&= \Big(\frac{d}{d\lambda}\frac{d\lambda}{d\sigma}\Big) u^\mu = - \kappa(\lambda) u^\mu
 \end{align*}
-where $\nabla_{\frac{d}{d\lambda}}\frac{dx^\mu}{d\lambda} = 0$ by the definition of affineness.
+where $\kappa$ is some function of $\lambda$. The second term above vanishes because $\lambda$ is an affine.
 \end{document}
