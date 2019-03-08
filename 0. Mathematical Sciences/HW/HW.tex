@@ -1,61 +1,65 @@
 \documentclass{article}
 \usepackage[margin=1.1in]{geometry}
-\usepackage{undertilde, amsmath, cancel}
-\DeclareMathOperator{\tr}{tr}
-\title{PHYS 7125 Homework 3}
+\usepackage{undertilde, amsmath, amsfonts, commath, cancel}
+\title{PHYS 7125 Homework 4}
 \author{Wenqi He}
 \begin{document}
 \maketitle
 \section{}
-\[ \nabla_\lambda R_{\rho\sigma\mu\nu} + \nabla_\rho R_{\sigma\lambda\mu\nu} + \nabla_\sigma R_{\lambda\rho\mu\nu} = 0 \]
-\[ g^{\mu\lambda} g^{\nu\sigma}\nabla_\lambda R_{\rho\sigma\mu\nu} + g^{\mu\lambda} g^{\nu\sigma} \nabla_\rho R_{\sigma\lambda\mu\nu} + g^{\mu\lambda} g^{\nu\sigma} \nabla_\sigma R_{\lambda\rho\mu\nu} = 0 \]
-\[ \nabla_\lambda \Big(g^{\mu\lambda} g^{\nu\sigma} R_{\sigma\rho\nu\mu}\Big) - \nabla_\rho \Big(g^{\mu\lambda} g^{\nu\sigma}  R_{\lambda\sigma\mu\nu}\Big) + \nabla_\sigma \Big(g^{\mu\lambda} g^{\nu\sigma} R_{\lambda\rho\mu\nu}\Big) = 0 \]
-\[ \nabla_\lambda \Big(g^{\mu\lambda} R_{\rho\mu}\Big) - \nabla_\rho \Big( g^{\nu\sigma}  R_{\sigma\nu}\Big) + \nabla_\sigma \Big( g^{\nu\sigma} R_{\rho\nu}\Big) = 0 \]
-\[ \nabla_\lambda \Big(g^{\mu\lambda} R_{\rho\mu}\Big) - \nabla_\rho R+ \nabla_\lambda\Big( g^{\mu\lambda} R_{\rho\mu}\Big) = 0 \]
-\[ \nabla_\lambda \Big(g^{\mu\lambda} R_{\rho\mu}\Big) - \nabla_\lambda \Big( \frac{1}{2}\delta_\rho^\lambda R\Big)  = 0 \]
-\[ \nabla_\lambda \Big(g^{\mu\lambda} R_{\rho\mu}\Big) - \nabla_\lambda \Big (\frac{1}{2} g^{\mu\lambda}g_{\rho\mu} R\Big)  = 0 \]
-\[  \nabla_\lambda  \Big[ g^{\mu\lambda} \Big(  R_{\rho\mu} - \frac{1}{2} g_{\rho\mu} R\Big) \Big]  = 0 \]
-\[  \nabla_\lambda  \Big( g^{\mu\lambda} G_{\rho\mu} \Big)  = 0 \]
-\[  \nabla_\lambda  G^\lambda{}_\rho  = 0 \]
-
-\section{}
-The only non-vanishing components of the metric are 
-\[ g_{\psi\psi} = 1, \quad  g_{\theta\theta}= \sin^2\psi, \quad g_{\phi\phi} = \sin^2\psi \sin^2\theta\]
-Since the matrix is diagonal, the corresponding components of the inverse metric are simply
-\[ g^{\psi\psi} = 1, \quad  g^{\theta\theta} = 1/\sin^2\psi, \quad g^{\phi\phi} = 1/\sin^2\psi \sin^2\theta\]
-The only non-vanishing first derivatives of the metric components are
-\[ g_{\theta\theta,\psi} = 2\sin\psi\cos\psi, \quad g_{\phi\phi,\psi} = 2\sin\psi\cos\psi\sin^2\theta,
-	\quad g_{\phi\phi,\theta} = 2\sin^2\psi \sin\theta\cos\theta \]
-\subsection*{a}
-The only non-vanishing Christoffel symbols are
-\[ \Gamma^\theta_{\theta\psi} = \Gamma^\theta_{\psi\theta} = \frac{1}{2}g^{\theta\theta}g_{\theta\theta,\psi}
-	= \frac{2\sin\psi\cos\psi}{2\sin^2\psi} = \cot\psi \]
-\[ \Gamma^\psi_{\theta\theta} = -\frac{1}{2}g^{\psi\psi}g_{\theta\theta,\psi} = -\sin\psi\cos\psi \]
-\[ \Gamma^\phi_{\phi\psi} = \Gamma^\phi_{\psi\phi} = \frac{1}{2}g^{\phi\phi}g_{\phi\phi,\psi}
-	= \frac{2\sin\psi\cos\psi\sin^2\theta}{2\sin^2\psi\sin^2\theta} = \cot\psi \]
-\[ \Gamma^\psi_{\phi\phi} = -\frac{1}{2}g^{\psi\psi}g_{\phi\phi,\psi} = -\sin\psi\cos\psi\sin^2\theta\]
-\[ \Gamma^\phi_{\phi\theta} =  \Gamma^\phi_{\theta\phi} = \frac{1}{2}g^{\phi\phi}g_{\phi\phi,\theta}
-	= \frac{2\sin^2\psi\sin\theta\cos\theta}{2\sin^2\psi\sin^2\theta} = \cot\theta\]
-\[ \Gamma^\theta_{\phi\phi} = -\frac{1}{2}g^{\theta\theta}g_{\phi\phi,\theta}
-	= -\frac{2\sin^2\psi\sin\theta\cos\theta}{2\sin^2\psi} = -\sin\theta\cos\theta \]
-\subsection*{b}
-There are $\dfrac{1}{12}\cdot3^2\cdot(3^2-1) = 6$ independent components (others can be obtained by symmetry) 
+For any time-like vector $t^\mu$ we can always choose a local coordinate system such that $g_{\mu\nu} = \eta_{\mu\nu}$ and $t^\mu = (1,0,0,0)$. The electromagnetic energy-momentum tensor expressed in such coordinates is
+\[
+	T_{\mu\nu} = \begin{pmatrix}
+		\frac{1}{2}(\epsilon_0E^2 + \frac{1}{\mu_0}B^2) & -S_x/c & -S_y/c & -S_z/c\\
+		-S_x/c & \cdots & \cdots & \cdots \\
+		-S_y/c & \cdots & \cdots & \cdots \\
+		-S_z/c & \cdots & \cdots & \cdots \\
+	\end{pmatrix}
+\]
+where \[\mathbf{S} = \frac{1}{\mu_0}\mathbf{E} \times \mathbf{B}\]
+(i)
+First, the weak energy condition is satisfied:
+\[ T_{\mu\nu}t^\nu t^\nu = \frac{1}{2}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big) \geq 0 \]
+(ii)
+\[ T_{\mu\nu}t^\mu = \Big(\frac{1}{2}(\epsilon_0E^2 + \frac{1}{\mu_0}B^2), -S_x/c, -S_y/c, -S_z/c\Big)\]
+Raising one index,
+\[ T^\nu{}_{\alpha}t^\alpha = \Big(-\frac{1}{2}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big), -S_x/c, -S_y/c, -S_z/c\Big)\]
+Using Lagrange's identity for cross products,
 \begin{align*}
-R_{\psi\theta\psi\theta} &= g_{\psi\psi}R^{\psi}_{\theta\psi\theta} = \sin^2\psi-\cos^2\psi - 0 + 0 - (-\cos^2\psi) = \sin^2\psi \\
-R_{\psi\theta\psi\phi} &= g_{\psi\psi}R^{\psi}_{\theta\psi\phi} = 0 - 0 + 0 - 0 = 0 \\
-R_{\psi\theta\theta\phi} &= g_{\psi\psi}R^{\psi}_{\theta\theta\phi} = 0 - 0 + 0 - 0 = 0 \\
-R_{\psi\phi\psi\phi} &= g_{\psi\psi}R^{\psi}_{\phi\psi\phi} =  (\sin^2\psi-\cos^2\psi)\sin^2\theta - 0 + 0 - (-\cos^2\psi\sin^2\theta) = \sin^2\psi\sin^2\theta \\
-R_{\psi\phi\theta\phi} &= g_{\psi\psi}R^{\psi}_{\phi\theta\phi} = -2\sin\psi\cos\psi\sin\theta\cos\theta - 0 + \sin\psi\cos\psi\sin\theta\cos\theta - (-\sin\psi\cos\psi\sin\theta\cos\theta) = 0 \\
-R_{\theta\phi\theta\phi} &= g_{\theta\theta}R^{\theta}_{\phi\theta\phi} = \sin^2\psi\Big[\sin^2\theta -\cos^2\theta - 0 + (-\cos^2\psi\sin^2\theta) - (-\cos^2\theta)\Big] = \sin^4\psi\sin^2\theta \\\\
-R_{\psi\psi} &= g^{\theta\theta}R_{\theta\psi\theta\psi} + g^{\phi\phi}R_{\phi\psi\phi\psi} = 2\\
-R_{\psi\theta} &= g^{\phi\phi}R_{\phi\psi\phi\theta} = 0\\
-R_{\psi\phi} &= g^{\theta\theta}R_{\theta\psi\theta\phi} = 0 \\
-R_{\theta\theta} &= g^{\psi\psi}R_{\psi\theta\psi\theta} + g^{\phi\phi}R_{\phi\theta\phi\theta} = \sin^2\psi + \sin^2\psi = 2\sin^2\psi\\
-R_{\theta\phi} &= g^{\psi\psi}R_{\psi\theta\psi\phi} = 0\\
-R_{\phi\phi} &= g^{\psi\psi}R_{\psi\phi\psi\phi} + g^{\theta\theta}R_{\theta\phi\theta\phi} = \sin^2\psi\sin^2\theta + \sin^2\psi\sin^2\theta = 2\sin^2\psi\sin^2\theta\\\\
-R &= g^{\psi\psi}R_{\psi\psi} + g^{\theta\theta}R_{\theta\theta} + g^{\phi\phi}R_{\phi\phi} = 2 + 2 + 2 = 6
+(T_{\mu\nu}t^\mu) (T^\nu{}_{\alpha}t^\alpha) &= -\frac{1}{4}\Big(\epsilon_0^2E^4 + \frac{1}{\mu_0^2}B^4 + 2\frac{\epsilon_0}{\mu_0}E^2B^2\Big) + \frac{\norm{\mathbf{S}}^2}{c^2} \\
+&= -\frac{1}{4}\Big(\epsilon_0^2E^4 + \frac{1}{\mu_0^2}B^4 + 2\frac{\epsilon_0}{\mu_0}E^2B^2\Big) + \frac{\epsilon_0}{\mu_0} (E^2B^2 - (\mathbf{E}\cdot\mathbf{B})^2) \\
+&= -\frac{1}{4}\Big(\epsilon_0E^2 - \frac{1}{\mu_0}B^2\Big)^2 - \frac{\epsilon_0}{\mu_0}(\mathbf{E}\cdot\mathbf{B})^2
+\leq 0 \\
 \end{align*}
+Thus the dominant energy condition is satisfied.
 \section{}
-Proposed topic: alternative theories of gravity, specifically, Einstein-Cartan and Brans-Dicke
+\subsection*{a}
+Since the metric is diagonal, indices can be lowered by a simple multiplication
+\[ V_\mu = \sum_\nu V^\nu g_{\mu\nu} = V^\mu \cdot g_{\mu\mu}\]
+The non-vanishing components of $\Gamma^{\mu}_{0\nu}$ are ($i = 1,2,3$)
+\[ \Gamma^{0}_{0i} = \frac{Mx^i}{(1-2M/r)r^3}, \quad \Gamma^{i}_{00} = \frac{Mx^i}{(1+2M/r)r^3} \]
+The geodesic equation can be simplified as
+\begin{align*}
+\frac{dp_0}{d\lambda} &= \sum_i \Big[ \frac{Mx^i}{(1-2M/r)r^3}p_0 p^i + \frac{Mx^i}{(1+2M/r)r^3}p^0 p_i \Big]\\
+&= \sum_i \Big[ g_{00}\frac{Mx^i}{(1-2M/r)r^3}p^0 p^i + g_{ii}\frac{Mx^i}{(1+2M/r)r^3}p^0 p^i \Big]\\
+&= \sum_i \Big[ -\frac{Mx^i}{r^3}p^0 p^i + \frac{Mx^i}{r^3}p^0 p^i \Big] = 0
+\end{align*}
+\subsection*{b}
+The geodesic equation for $p^0$ is
+\[ \frac{dp^0}{d\lambda} = \Gamma^0_{\mu\nu}p^\mu p^\nu \]
+The only non-vanishing $\Gamma^0_{\mu\nu}$ are ($i = 1,2,3$)
+\[ \Gamma^{0}_{0i} = \Gamma^{0}_{i0} = \frac{Mx^i}{(1-2M/r)r^3} \]
+The geodesic equation shows that $dp^0/d\lambda$ is generally non-zero:
+\[ \frac{dp^0}{d\lambda} = \sum_i \Big[ \frac{2Mx^i}{(1-2M/r)r^3}p^0 p^i \Big] \not\equiv 0\]
+\subsection*{c}
+Since the atom is at rest, $u^i = 0$. The geodesic equation is
+\[ \frac{du^0}{d\lambda} = \sum_i \Big[ \frac{2Mx^i}{(1-2M/r)r^3}u^0 u^i \Big] = 0\]
+Therefore $u^0 = dt/d\lambda$ could be any constant, which means that $\lambda = at + b$.
+\subsection*{d}
+Since both the atom and the oberver are at rest, $dx^i = 0$,
+\[ ds^2 = -(1-2M/r)dt^2 = -d\tau^2 \quad\Rightarrow\quad d\tau  = (1-2M/r)^{1/2}dt\]
+On the surface of the sun $d\tau_e  = (1-2M/R)^{1/2}dt$ and far away from the sun $d\tau_r \approx dt$, so the time dilation is $d\tau_e / d\tau_r = (1-2M/R)^{1/2}$. And since the speed of light is constant everywhere, 
+\[ \frac{\lambda_e}{\lambda_r} = \frac{c\Delta\tau_e}{c\Delta\tau_r} = (1-2M/R)^{1/2} = 1 - \frac{M}{R} + \mathcal{O}\left((M/R)^2\right)\]
+\[ \frac{\lambda_r - \lambda_e}{\lambda_r} = \frac{M}{R} + \mathcal{O}\left((M/R)^2\right) \]
+
 
 \end{document}
