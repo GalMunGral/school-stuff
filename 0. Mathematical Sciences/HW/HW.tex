@@ -6,60 +6,95 @@
 \begin{document}
 \maketitle
 \section{}
-For any time-like vector $t^\mu$ we can always choose a local coordinate system such that $g_{\mu\nu} = \eta_{\mu\nu}$ and $t^\mu = (1,0,0,0)$. The electromagnetic energy-momentum tensor expressed in such coordinates is
+For a timelike vector $t^\mu$ at any point $p$ it is always possible to construct an orthonormal frame $\utilde{\mathbf{e}}_i^\mu$  where $\utilde{\mathbf{e}}_0^\mu= t^\mu$. (Without loss of generality, $t^\mu$ can be assumed to have unit length (-1). In the general case, the results only differ by a positive factor.) In such coordinates, $t^\mu = (1,0,0,0)$, the metric is locally $\eta_{\mu\nu}$, and the components of the electromagnetic energy-momentum tensor is
+\[ T_{\mu\nu} = \frac{1}{\mu_0}\Big[ F_\mu{}^\alpha F_{\nu\alpha} - \frac{1}{4}\eta_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta} \Big] \]
+Considering $t^\mu$ is only non-zero in its time component and $T_{\mu\nu}$ is symmetric, we only need to compute
+\begin{align*}
+T_{0\nu} = \frac{1}{\mu_0}\Big[ F_0{}^\alpha F_{\nu\alpha} - \frac{1}{4}\eta_{0\nu}F_{\alpha\beta}F^{\alpha\beta} \Big] =: A+ B 
+\end{align*}
+The first term evaluates to: (Define $\mathbf{S} := \frac{1}{\mu_0}\mathbf{E} \times \mathbf{B}$)
+\[
+	A = \frac{1}{\mu_0} \begin{pmatrix}
+		0 & E_x/c & E_y/c & E_z/c \\
+		-E_x/c & 0 & -B_z & B_y \\
+		-E_y/c & B_z & 0 & -B_x \\
+		-E_z/c & -B_y & B_x & 0
+	\end{pmatrix} \begin{pmatrix}
+		0 \\ E_x/c \\ E_y/c \\ E_z/c
+	\end{pmatrix} = \begin{pmatrix}
+		\epsilon_0 E^2 \\
+		-\frac{1}{\mu_0}(E_yB_z - E_zB_y)/c \\
+		-\frac{1}{\mu_0}(E_zB_x - E_xB_z)/c \\
+		-\frac{1}{\mu_0}(E_xB_y - E_yB_x)/c \\
+	\end{pmatrix} = \begin{pmatrix}
+		\epsilon_0 E^2 \\
+		-S_x/c \\
+		-S_y/c \\
+		-S_z/c \\
+	\end{pmatrix}
+\]
+The second term:
+\[
+B = -\frac{1}{4\mu_0} (-2E^2/c^2 + 2B^2)\begin{pmatrix}
+	-1\\ 0 \\ 0\\ 0
+\end{pmatrix} = \begin{pmatrix}
+	  \frac{1}{2}\Big(-\epsilon_0E^2 + \frac{1}{\mu_0}B^2 \Big)\\ 0 \\0 \\ 0
+	\end{pmatrix}
+\quad\Rightarrow\quad T_{0\nu} = \begin{pmatrix}
+		\frac{1}{2} \Big(\epsilon_0 E^2 + \frac{1}{\mu_0}B^2 \Big) \\
+		-S_x/c \\
+		-S_y/c \\
+		-S_z/c \\
+	\end{pmatrix}
+ \]
+In matrix form, the relevant components of the energy-momentum tensor are:
 \[
 	T_{\mu\nu} = \begin{pmatrix}
-		\frac{1}{2}(\epsilon_0E^2 + \frac{1}{\mu_0}B^2) & -S_x/c & -S_y/c & -S_z/c\\
+		\frac{1}{2}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big) & -S_x/c & -S_y/c & -S_z/c\\
 		-S_x/c & \cdots & \cdots & \cdots \\
 		-S_y/c & \cdots & \cdots & \cdots \\
 		-S_z/c & \cdots & \cdots & \cdots \\
 	\end{pmatrix}
 \]
-where \[\mathbf{S} = \frac{1}{\mu_0}\mathbf{E} \times \mathbf{B}\]
 (i)
-First, the weak energy condition is satisfied:
-\[ T_{\mu\nu}t^\nu t^\nu = \frac{1}{2}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big) \geq 0 \]
+The weak energy condition is obviously satisfied:
+\[ T_{\mu\nu}t^\mu t^\nu = T_{00} = \frac{1}{2}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big) \geq 0 \]
 (ii)
-\[ T_{\mu\nu}t^\mu = \Big(\frac{1}{2}(\epsilon_0E^2 + \frac{1}{\mu_0}B^2), -S_x/c, -S_y/c, -S_z/c\Big)\]
-Raising one index,
-\[ T^\nu{}_{\alpha}t^\alpha = \Big(-\frac{1}{2}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big), -S_x/c, -S_y/c, -S_z/c\Big)\]
+\[ T_{\mu\nu}t^\mu = T_{0\nu} = \Bigg(\frac{1}{2}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big), -S_x/c, -S_y/c, -S_z/c\Bigg)\]
+\[ T^\nu{}_{\alpha}t^\alpha = T^\nu{}_{0} = g^{\nu\nu} \cdot T_{\nu0} =  \Bigg(-\frac{1}{2}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big), -S_x/c, -S_y/c, -S_z/c\Bigg)\]
 Using Lagrange's identity for cross products,
 \begin{align*}
-(T_{\mu\nu}t^\mu) (T^\nu{}_{\alpha}t^\alpha) &= -\frac{1}{4}\Big(\epsilon_0^2E^4 + \frac{1}{\mu_0^2}B^4 + 2\frac{\epsilon_0}{\mu_0}E^2B^2\Big) + \frac{\norm{\mathbf{S}}^2}{c^2} \\
-&= -\frac{1}{4}\Big(\epsilon_0^2E^4 + \frac{1}{\mu_0^2}B^4 + 2\frac{\epsilon_0}{\mu_0}E^2B^2\Big) + \frac{\epsilon_0}{\mu_0} (E^2B^2 - (\mathbf{E}\cdot\mathbf{B})^2) \\
+(T_{\mu\nu}t^\mu) (T^\nu{}_{\alpha}t^\alpha) &=  -\frac{1}{4}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big)^2 + \frac{\norm{\mathbf{S}}^2}{c^2} \\
+&=  -\frac{1}{4}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big)^2 + \frac{\epsilon_0}{\mu_0} \norm{\mathbf{E}\times\mathbf{B}}^2 \\
+&=  -\frac{1}{4}\Big(\epsilon_0E^2 + \frac{1}{\mu_0}B^2\Big)^2 + \frac{\epsilon_0}{\mu_0} \Big(E^2B^2 - (\mathbf{E}\cdot\mathbf{B})^2\Big) \\
 &= -\frac{1}{4}\Big(\epsilon_0E^2 - \frac{1}{\mu_0}B^2\Big)^2 - \frac{\epsilon_0}{\mu_0}(\mathbf{E}\cdot\mathbf{B})^2
-\leq 0 \\
+\leq 0
 \end{align*}
-Thus the dominant energy condition is satisfied.
+Thus the dominant energy condition is also satisfied.
 \section{}
 \subsection*{a}
-Since the metric is diagonal, indices can be lowered by a simple multiplication
-\[ V_\mu = \sum_\nu V^\nu g_{\mu\nu} = V^\mu \cdot g_{\mu\mu}\]
-The non-vanishing components of $\Gamma^{\mu}_{0\nu}$ are ($i = 1,2,3$)
-\[ \Gamma^{0}_{0i} = \frac{Mx^i}{(1-2M/r)r^3}, \quad \Gamma^{i}_{00} = \frac{Mx^i}{(1+2M/r)r^3} \]
+The only non-vanishing components of $\Gamma^{\mu}_{0\nu}$ are
+\[ \Gamma^{0}_{0i} = \frac{Mx^i}{(1-2M/r)r^3}, \quad \Gamma^{i}_{00} = \frac{Mx^i}{(1+2M/r)r^3} \quad\text{  ($i = 1,2,3$) }\]
 The geodesic equation can be simplified as
 \begin{align*}
-\frac{dp_0}{d\lambda} &= \sum_i \Big[ \frac{Mx^i}{(1-2M/r)r^3}p_0 p^i + \frac{Mx^i}{(1+2M/r)r^3}p^0 p_i \Big]\\
-&= \sum_i \Big[ g_{00}\frac{Mx^i}{(1-2M/r)r^3}p^0 p^i + g_{ii}\frac{Mx^i}{(1+2M/r)r^3}p^0 p^i \Big]\\
-&= \sum_i \Big[ -\frac{Mx^i}{r^3}p^0 p^i + \frac{Mx^i}{r^3}p^0 p^i \Big] = 0
+\frac{dp_0}{d\lambda} &= \sum_i \Bigg( \frac{Mx^i}{(1-2M/r)r^3}p_0 p^i + \frac{Mx^i}{(1+2M/r)r^3}p^0 p_i \Bigg)\\
+&= \sum_i \Bigg( g_{00}\frac{Mx^i}{(1-2M/r)r^3} + g_{ii}\frac{Mx^i}{(1+2M/r)r^3} \Bigg)p^0 p^i\\
+&= \sum_i \Bigg( -\frac{Mx^i}{r^3} + \frac{Mx^i}{r^3} \Bigg)p^0 p^i = 0
 \end{align*}
 \subsection*{b}
-The geodesic equation for $p^0$ is
-\[ \frac{dp^0}{d\lambda} = \Gamma^0_{\mu\nu}p^\mu p^\nu \]
-The only non-vanishing $\Gamma^0_{\mu\nu}$ are ($i = 1,2,3$)
-\[ \Gamma^{0}_{0i} = \Gamma^{0}_{i0} = \frac{Mx^i}{(1-2M/r)r^3} \]
-The geodesic equation shows that $dp^0/d\lambda$ is generally non-zero:
-\[ \frac{dp^0}{d\lambda} = \sum_i \Big[ \frac{2Mx^i}{(1-2M/r)r^3}p^0 p^i \Big] \not\equiv 0\]
+No. $p^0 = g^{0\nu}p_\nu = g^{00}p_0 = -(1-2M/r)^{-1}p_0$, which is not constant unless $r$ is constant.
 \subsection*{c}
-Since the atom is at rest, $u^i = 0$. The geodesic equation is
-\[ \frac{du^0}{d\lambda} = \sum_i \Big[ \frac{2Mx^i}{(1-2M/r)r^3}u^0 u^i \Big] = 0\]
-Therefore $u^0 = dt/d\lambda$ could be any constant, which means that $\lambda = at + b$.
+For the atom at rest on the surface of the sun, $dx^i = 0$, $r = R$,
+\[ d\tau^2 = -ds^2 = (1-2M/R)dt^2 \quad\Rightarrow\quad u^0 = \frac{dt}{d\tau} = \frac{1}{\sqrt{1-2M/R}} \]
 \subsection*{d}
-Since both the atom and the oberver are at rest, $dx^i = 0$,
-\[ ds^2 = -(1-2M/r)dt^2 = -d\tau^2 \quad\Rightarrow\quad d\tau  = (1-2M/r)^{1/2}dt\]
-On the surface of the sun $d\tau_e  = (1-2M/R)^{1/2}dt$ and far away from the sun $d\tau_r \approx dt$, so the time dilation is $d\tau_e / d\tau_r = (1-2M/R)^{1/2}$. And since the speed of light is constant everywhere, 
-\[ \frac{\lambda_e}{\lambda_r} = \frac{c\Delta\tau_e}{c\Delta\tau_r} = (1-2M/R)^{1/2} = 1 - \frac{M}{R} + \mathcal{O}\left((M/R)^2\right)\]
-\[ \frac{\lambda_r - \lambda_e}{\lambda_r} = \frac{M}{R} + \mathcal{O}\left((M/R)^2\right) \]
+For both the atom and the distant observer, $dx^i = 0$,
+\[ d\tau^2  = -ds^2 = (1-2M/r)dt^2 \]
+\[ \Rightarrow\quad u^\mu = \frac{dx^\mu}{d\tau} = (dt/d\tau,0,0,0)  = ((1-2M/r)^{-1/2}, 0, 0,0) \]
+The photon energy observed at both locations can be expressed as
+\[ E = g_{\mu\nu}p^\mu u^\nu = (1-2M/r)^{-1/2} g_{\mu\nu}p^\mu K^\nu \]
+where $K^\nu = (1,0,0,0)$ is a Killing vector as the metric has no time dependence; therefore $g_{\mu\nu}p^\mu K^\nu$ is conserved along the photon's world line, which is a geodesic as stated in the problem. Then,
+\[ \frac{\lambda_r}{\lambda_e} = \frac{h c /\lambda_e}{h c/\lambda_r} = \frac{E_e}{E_r} = \frac{(1-2M/R)^{-1/2}}{\lim_{r\rightarrow\infty} (1-\cancel{2M/r})^{-1/2}} = 1 + \frac{M}{R} + \mathcal{O}\left(\frac{M^2}{R^2}\right)\]
+\[ z = \frac{\lambda_r - \lambda_e}{\lambda_e} = \frac{\lambda_r}{\lambda_e} - 1 = \frac{M}{R} + \mathcal{O}\left(\frac{M^2}{R^2}\right) \]
 
 
 \end{document}
