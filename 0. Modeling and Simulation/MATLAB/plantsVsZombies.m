@@ -11,6 +11,5 @@ body(:,end+1) = num2cell(defense + attack);
 idx = find(strcmpi(header, column));
 sortedBody = sortrows(body, idx, 'descend');
 updated = [header; sortedBody(1:3,:)];
-
 end
 
