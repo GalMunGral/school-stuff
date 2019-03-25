@@ -1,3 +1,4 @@
+% MATLAB
 function zombieSpeech(file)
 f = fopen(file);
 line = fgetl(f);
@@ -31,4 +32,3 @@ end
 fclose(f);
 fclose(outFile);
 end
-
