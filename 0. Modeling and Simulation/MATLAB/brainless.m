@@ -9,4 +9,5 @@ function [updated, out] = brainless(monsters)
             out = 'He didn''t stand a chance.';
         otherwise
             out = sprintf('Good work! We found %d zombies!', sum(sum(mask)));
+    end
 end
