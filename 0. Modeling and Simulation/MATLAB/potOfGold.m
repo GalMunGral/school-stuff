@@ -1,3 +1,4 @@
+% MATLAB
 function count = potOfGold(rainbow)
 count = 0;
 curRainbow = rainbow;
