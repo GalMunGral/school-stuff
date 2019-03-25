@@ -1,3 +1,4 @@
+% MATLAB
 function out = kirbyCase(in)
 remain = in;
 out = '';
