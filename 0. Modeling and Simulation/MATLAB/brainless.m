@@ -10,4 +10,3 @@ switch sum(sum(mask))
     otherwise
         out = sprintf('Good work! We found %d zombies!', sum(sum(mask)));
 end
-
