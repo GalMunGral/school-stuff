@@ -9,7 +9,8 @@ import random
 class CryptoProject(object):
 
     def __init__(self):
-        self.student_id = 'bdornier3'
+        # self.student_id = 'bdornier3'
+        self.student_id = 'whe47'
 
     def get_student_id_hash(self):
         return hashlib.sha224(self.student_id.encode('UTF-8')).hexdigest()
