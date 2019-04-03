@@ -1,88 +1,92 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \usepackage[margin=1.2in]{geometry}
-\usepackage{undertilde, amsmath, amsfonts, commath, cancel, graphicx, cases, siunitx}
+\usepackage{cite, undertilde, amsmath, amsfonts, commath, cancel, graphicx, cases, siunitx, url, hyperref}
 \usepackage{accents}
 
 \newcommand{\ut}[1]{\underaccent{\tilde}{#1}}
 
-\title{PHYS-7125 Term Paper \\ Review of Einstein-Cartan Theory of Gravitation}
+\title{\Large{PHYS-7125 Term Paper} \\ \textsc{\LARGE{Review of Einstein-Cartan Theory of Gravitation}}}
 \author{Wenqi He}
 \begin{document}
 \maketitle
 \section{Mathematical Considerations}
 \subsection{Cartan's torsion tensor}
-On a manifold with prescribed connection coefficients $\Gamma^k_{ij}$, Cartan's torsion tensor is defined as
+On a manifold with connection coefficients $\Gamma^k_{ij}$, Cartan's torsion tensor is defined as
 \[ S_{ij}{}^k := \Gamma^k_{[ij]} = \frac{1}{2}(\Gamma^k_{ij} - \Gamma^k_{ji})\]
-which measures the extent to which infinitesimal parallelograms fail to close. The torsion tensor transforms as a tensor, in contrasts to connection coefficients. Torsion plays an important role in the fundamental theorem of Riemannian geometry, which states that there exists a unique metric-compatible connection on a (pseudo-)Riemanian manifold that is torsion-free. Such connection is the familiar Levi-Civita connection:
+which measures the extent to which infinitesimal parallelograms fail to close. Torsion transforms as a tensor, in contrasts to connection coefficients. A vanishing torsion, as the fundamental theorem of Riemannian geometry states, leads to a unique metric-compatible connection on a (pseudo-)Riemanian manifold, which is the familiar Levi-Civita connection:
 \[ \Gamma^l_{ij} = \{\substack{l\\ij}\} = \frac{1}{2}g^{lk}\Big(\partial_j g_{ik} + \partial_i g_{jk} - \partial_k g_{ij} \Big)\]
-Einstein's did not introduce Christoffel symbol in consideration of this uniqueness theorem, but rather from his postulate that the any quantity describing gravitation should depend solely on the metric tensor and its derivatives. However, if we are only looking to equip the spacetime manifold with a connection, it is not immediately obvious whether the torsion-free constraint is necessary. 
-\subsection{Riemann-Cartan space-time $U_4$}
-If torsion is included, the geometry becomes non-Riemannian. In terms of connection coefficients, extra terms are introduced:
+Here $\Gamma$ denotes connection coefficients, and $\{\}$ is the historic notation of Christoffel symbol as appeared in Christoffel's 1869 paper and Einstein's 1915-1916 papers. Einstein originally introduced Christoffel symbol under the postulate that the any quantity describing gravitation should depend on the metric and its derivatives alone \cite{einstein1916foundation}, rather than directly from this uniqueness theorem. From a mathematical perspective, it is not immediately clear whether the torsion-free constraint is necessary for a successful theory, as Einstein himself also considered this assumption unnecessary in his later years. \footnote{... the essential achievement of general relativity, namely to overcome ``rigid" space (i.e. the inertial frame), is only indirectly connected with the introduction of a Riemannian metric. The directly relevant conceptual element is the ``displacement field" ($\Gamma$), which expresses the infinitesimal displacement of vectors. ... This makes it possible to construct tensors by differentiation and hence to dispense with the introduction of ``rigid" space (the inertial frame). In the face of this, it seems to be of secondary importance in some sense that some particular $\Gamma$ field can be deduces from a Riemannian metric ... (Einstein, 1955)}
+\subsection{Riemann-Cartan spacetime $U_4$}
+If torsion is included, the spacetime geometry becomes non-Riemannian. In terms of connection coefficients, extra terms need to be added to the Christoffel symbol:
 \[ \Gamma^l_{ij} = \{\substack{l\\ij}\} + S_{ij}{}^k - S_j{}^k{}_i + S^k{}_{ij} =: \{\substack{l\\ij}\} - K_{ij}{}^k \]
-The contortion tensor $K_{ij}{}^k$ here plays a fundamental role in Einstein-Cartan theory. The mixture of upper and lower indices implies that $K_{ij}{}^k$ depends on not only torsion but also metric tensor. The Riemann curvature tensor can still be defined as usual, as the measurement of how much vector components change after being parallelly transported around an infinitesimal area back to its starting point:
+The Riemann curvature tensor can be defined as usual to be the measurement of changes in vector components after the vector is parallelly transported around an infinitesimal area back to its starting point:
 \[ R^l{}_{kij} = 2\partial_{[j}\Gamma^l_{k]k} + 2\Gamma^l_{[i|m}\Gamma^m_{|j]k} \] 
-Since the definition of Riemann tensor is still the same, it is still antisymmetric in the first two and last two indices, although other identities are different. Therefore the Ricci tensor $R_{ij}$ is still the only meaningful contraction, and the Einstein tensor can also be defined as usual. However, now $R_{ij}$ and $G_{ij}$ will be in generall asymmetric. $U_4$ fits in the big picture as follows:
+Since the definition of Riemann tensor does not depend on the particular form of connections, it is still antisymmetric in the first two and last two indices and still satisfies the Bianchi identity, although this is not the case for other identities. By symmetry, the Ricci tensor $R_{ij}$ is still the only meaningful contraction, and the Einstein tensor can also be defined as usual. However, due to $\Gamma$ being asymmetric, $R_{ij}$ and $G_{ij}$ will be asymmetric in general. Riemann-Cartan spacetime $U_4$ fits in the hierarchy as follows:
 \[ (L_4, g) \xrightarrow{\nabla g = 0} U_4 \xrightarrow{S=0} V_4 \xrightarrow{R = 0} R_4\]
-In other words, the most general manifold equipped a metric-preserving connection is $U_4$; when torsion vanishes, it reduces to the Riemannian $V_4$ in general relativity; when curvature vanishes, the manifold becomes the Minkowskian $R_4$.
+In other words, the most general manifold equipped a metric-preserving connection is $U_4$. When torsion vanishes, it reduces to the pseudo-Riemannian $V_4$ in general relativity. If in addition curvature vanishes, the manifold becomes Minkowskian $R_4$.
+
 \section{Field Equations of Einstein-Cartan Theory}
-\subsection{Physical motivations}
-From the perspective of particle physics, all elmentary particles can be classified by the representations of the Poincar\'e group and be labeled by mass $m$ and spin $s$. $m$ is associated with the translational part of Poincar\'e group and $s$ with the rotational part. With spin being such a fundamental notion that is distinct from mass, it is reasonble to hypothesize that spin is also a source of a gravitational field, that is, the spin angular momentum of matter should be coupled to some geometrical quantity at each point of spacetime, analogous to how energy-momentum is coupled to the metric tensor in general relativity. 
-\subsection{Canonical tensors from Noether's theorem}
-Suppose there is a matter field $\psi(x^a)$ distributed over spacetime and its actions is
+\subsection{Motivation \cite{hehl1976general}}
+From the perspective of particle physics, all elmentary particles can be classified by the representations of the Poincar\'e group and be labeled by mass $m$ and spin $s$. $m$ is associated with the translational part of Poincar\'e group and $s$ with the rotational part. With spin being a fundamental notion distinct from mass, it is reasonble to hypothesize that spin angular momentum is also a source of a gravitational field. That is, spin can be supposed to be coupled to some geometrical quantity that characterizes the rotational degrees of freedom at of each point of spacetime, analogous to how energy-momentum is coupled to metric.
+\subsection{Canonical tensors from Noether's theorem \cite{hehl1976general}}
+Suppose a matter field $\psi(x^a)$ is distributed over spacetime and its actions being
 \[ W_m = \int \mathfrak{L}(\psi,\partial\psi, g,\partial g, S) d^4x \]
-With the following definitions:
+From Noether's theorem, it can be shown that the canonical spin angular momentum tensor, defined as the Noether current for rotations (Lorentz transformations), can be expressed as the variational derivative of the Lagragian density with respect to contortion, or the non-Christoffel term of the connection:
+\[\tau_k{}^{ji} := \frac{1}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta K_{ij}{}^k}\]
+Additionally, define
 \[ \sigma^{ij} := \frac{2}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta g_{ij}},
 \quad \mu_{k}{}^{ji} := \frac{1}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta S_{ij}{}^k},
-\quad \tau_k{}^{ji} := \frac{1}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta K_{ij}{}^k}\]
-It can be shown from Noether's theorem that
-\[ \Sigma^{ij} := \sigma^{ij} - \stackrel{*}{\nabla}_k\mu^{ijk}  = \sigma^{ij} + \stackrel{*}{\nabla}_k(\tau^{ijk} - \tau^{jki} + \tau^{kij}),\]
-where $\stackrel{*}{\nabla}_k := \nabla_k + 2S_{kl}{}^l$, is the canonical energy-momentum tensor, which is defined to be the Noether current for spacetime translations. $\sigma^{ij}$ is simply the metric energy-momentum tensor used in general relativty. Similarly, $\tau^{ijk}$ can be shown to be the Noether current for rotations about each point, which is by definition the canonical spin angular momentum tensor.
-\subsection{Field Equations from Variational Principle}
-As usual, the field equation can be derived by variation of the total action with respect to each independent variables. 
-The most natural choice for the Lagrangian density of gravitational field is still
+\quad \stackrel{*}{\nabla}_k := \nabla_k + 2S_{kl}{}^l\]
+The canonical energy-momentum tensor, or the Noether current for translations, is
+ \[ \Sigma^{ij} := \sigma^{ij} - \stackrel{*}{\nabla}_k\mu^{ijk}  = \sigma^{ij} + \stackrel{*}{\nabla}_k(\tau^{ijk} - \tau^{jki} + \tau^{kij})\]
+where $\sigma^{ij}$, the variational derivative of the Lagrangian density with respect to metric, is the familiar Hilbert stress-energy tensor, which is equivalent to the canonical energy-momentum tensor under the framework of general relativity. In Einstein-Cartan theory, however, the additional divergence term must be included to compensate for a non-zero torsion.
+\subsection{Field Equations from Action Principle}
+The field equation can be derived as usual by doing a variation of the full action with respect to each independent variable, in this case $g_{ij}$ and $S_{ij}{}^k$. 
+The natural choice for the Lagrangian density of gravitational field is still the same as originally proposed by Hilbert:
 \[\mathfrak{L}_{grav} = \frac{1}{2\kappa}\mathfrak{R} = \frac{1}{2\kappa}\sqrt{-g} R\]
 where $\kappa = 8\pi G$. And the total action is
-\[ S_{total} = S_{grav} + S_{matter} = \int \Big[ \mathfrak{L}(\psi,\partial\psi, g,\partial g, S) +  \frac{1}{2\kappa} \sqrt{-g}R  \Big]d^4x\]
-Doing variations with respect to metric and torsion (while holding the other constant) gives:
+\[ S = S_{matter} + S_{grav} = \int \Big[ \mathfrak{L}(\psi,\partial\psi, g,\partial g, S) +  \frac{1}{2\kappa} \sqrt{-g}R  \Big]d^4x\]
+Varying the action with respect to $g_{ij}$ and $S_{ij}{}^k$, keeping each other constant, gives:
 \begin{numcases}{}
 	- \frac{\delta(\sqrt{-g}R)}{\delta g_{ij}} = \kappa \sqrt{-g} \left( \frac{2}{\sqrt{-g}}\frac{\delta{\mathfrak{L}}}{\delta g_{ij}} \right) = \kappa \sqrt{-g} \sigma^{ij} \label{a} \\
 	- \frac{\delta(\sqrt{-g}R)}{\delta S_{ij}{}^k} = \kappa \sqrt{-g} \left( \frac{2}{\sqrt{-g}}\frac{\delta{\mathfrak{L}}}{\delta S_{ij}{}^k} \right) = 2\kappa \sqrt{-g} \mu_k{}^{ji}
 \end{numcases}
-Using the definition of $\Sigma^{ij}$ and equation (2), equation (1) can be transformed:
+Using the definition of $\Sigma^{ij}$ and equation (2), equation (1) can be simplified:
 \begin{align*} 
 - \frac{\delta(\sqrt{-g}R)}{\delta g_{ij}}  &= \kappa \sqrt{-g} \left( \Sigma + \stackrel{*}{\nabla}_k\mu^{ijk}\right)
 = \kappa \sqrt{-g} \left[ \Sigma^{ij} + \stackrel{*}{\nabla}_k \left(\frac{g^{li}}{2\kappa\sqrt{-g}}\frac{\delta (\sqrt{-g}R)}{\delta S_{jk}{}^l}\right) \right] \\
 &= \kappa \sqrt{-g} \left[ \Sigma^{ij} + \frac{g^{li}}{2\kappa\sqrt{-g}} \stackrel{*}{\nabla}_k \left(\frac{\delta (\sqrt{-g}R)}{\delta S_{jk}{}^l}\right) \right] \\
 &= \kappa \sqrt{-g} \Sigma^{ij} + \frac{g^{li}}{2} \stackrel{*}{\nabla}_k \left(\frac{\delta (\sqrt{-g}R)}{\delta S_{jk}{}^l}\right)
 \end{align*}
-Leaving only $\Sigma^{ij}$ on the right hand side:
-\[ - \frac{1}{\sqrt{-g}} \left[\frac{\delta(\sqrt{-g}R)}{\delta g_{ij}} + \frac{g^{li}}{2} \stackrel{*}{\nabla}_k \left(\frac{\delta (\sqrt{-g}R)}{\delta S_{jk}{}^l}\right)\right] =  \kappa \Sigma^{ij} \]
-After some long calculations, the left-hand side simplies drastically to Einstein tensor $G^{ij}$:
-\[ G^{ij} = \kappa \Sigma^{ij} \]
-Equation (2) can be rewritten in terms of $\tau^{ijk}$ by an antisymmetrization:
+After tedious calculations, the geometric terms simply drastically to $G^{ij}$.
+\[ - \frac{1}{\sqrt{-g}} \left[\frac{\delta(\sqrt{-g}R)}{\delta g_{ij}} + \frac{g^{li}}{2} \stackrel{*}{\nabla}_k \left(\frac{\delta (\sqrt{-g}R)}{\delta S_{jk}{}^l}\right)\right] =  \kappa \Sigma^{ij}
+\quad\Rightarrow\quad G^{ij} = \kappa \Sigma^{ij} \]
+Equation (2) can be written in terms of $\tau^{ijk}$ by an antisymmetrization:
 \[ -\frac{g^{l[i}}{2\sqrt{-g}}\frac{\delta(\sqrt{-g}R)}{\delta s_{j]k}{}^l} = \kappa \mu^{[ji]k} = \kappa \tau^{ijk} \]
-The left-hand side evaluates to the modified torsion tensor
+The left-hand side evaluates to the torsion tensor modified by its trace:
 \[ T_{ij}{}^k := S_{ij}{}^k + 2\delta^k_{[i}S_{j]l}{}^l\]
-Thus, the two sets of field equations in Einstein-Cartan theory are obtained
+The two sets of field equations of Einstein-Cartan theory are finally derived as:
 \begin{numcases}{}
 G^{ij} = \kappa \Sigma^{ij}\\
 T^{ijk} = \kappa \tau^{ijk}
 \end{numcases}
 
-\section{Interpretations of the Theory}
-Equation (4) are simple algebraic equations rather than differential equations, which implies that, in stark contrast to curvature, torsion must be zero outside of matter distributions and cannot propagate as a torsion wave through vacuum - it is bound to matter.\\\\
-Also, the fact that equation (4) is algebraic make it possible to separate out the non-Riemannian part of $G^{ij}$ in equation (3) and substitute all $T^{ijk}$ with $\tau^{ijk}$. The result is a a combined field equation involving only the Riemannian part of Einstin tensor
-\[ G^{ij}_{\{\}}  = \kappa \Bigg[\sigma^{ij} + \boxed{\kappa\Big( -4\tau^{ik}{}_{[l}\tau^{jl}{}_{k]} 
--2\tau^{jkl}\tau^j{}_{kl} + \tau^{kli}\tau_{kl}{}^j + \frac{1}{2}g^{ij}\left( 4\tau_m{}^k{}_{[l}\tau^{ml}{}_{k]} + \tau^{mkl}\tau_{mkl} \right)\Big)} \Bigg] \]
-Compared to the equation from general relativity, which is
-\[G^{ij} = \kappa \sigma^{ij} \]
-the boxed term is the correction term of Einstein-Cartan theory to general relativity. Suppose the matter distribution is made up of polarized elementary particles with particle mass $m$ and spin $\hbar/2$, and the number density if $n$. From the equation it is clear  that the mass density $\rho = mn$ received a correction from spin of order $\kappa s^2 = \kappa (n\hbar/2)^2$. In order for spin to have an effect as significant as mass,
+\section{Physical Implications}
+The first equation simply reduces to Einstein's equations in the case of zero spin. The second equation, which describes the coupling of the torsion of spacetime to the spin angular momentum of matter fields, is a set of straightforward algebraic equations rather than differential equations like the first one, which implies that, in contrast to curvature, torsion must always be zero outside of matter distributions and cannot propagate as a torsion wave through vacuum - it is only bound to matter.\\\\
+Furthermore, the fact that equation (4) is algebraic make it possible to pull out the non-Riemannian part of $G^{ij}$ in equation (3) and substitute all $T^{ijk}$ with $\kappa\tau^{ijk}$, resulting in a combined field equation involving only the Riemannian part of Einstin tensor\cite{hehl1976general}
+\[ G^{ij}_{\{\}}  = \kappa \Bigg[\sigma^{ij} + \kappa\Big( -4\tau^{ik}{}_{[l}\tau^{jl}{}_{k]} 
+-2\tau^{jkl}\tau^j{}_{kl} + \tau^{kli}\tau_{kl}{}^j + \frac{1}{2}g^{ij}\left( 4\tau_m{}^k{}_{[l}\tau^{ml}{}_{k]} + \tau^{mkl}\tau_{mkl} \right)\Big) \Bigg] \]
+Compared to Einstein's field equations, which under this notation is
+\[G^{ij}_{\{\}} = \kappa \sigma^{ij} \]
+the rather complicated term involving spin tensor $\tau$ is the correction to general relativity, which is obviously very small due to the extra $\kappa$ factor. Suppose the matter distribution is made up of polarized elementary particles with particle mass $m$, spin $\hbar/2$, and number density $n$. From the combined field equation it is obvious that the mass density $\rho = mn$ receives a correction from spin of order $\kappa s^2 = \kappa (n\hbar/2)^2$. For spin to have an effect as significant as mass density,
 \[ mn \sim \kappa n^2\hbar^2 \quad\Rightarrow\quad n \sim \frac{m}{\kappa \hbar^2} \]
 In terms of mass density,
-\[ \rho \sim \frac{m^2}{\kappa \hbar^2} = \frac{m}{\lambda l^2} \approx \begin{cases}
+\[ \rho \sim \frac{m^2}{\kappa \hbar^2} \approx \begin{cases}
 10^{47} \, \si{g.cm^{-3}} \text{ (electrons)} \\
 10^{54} \,\si{g.cm^{-3}} \text{ (neutrons)}
 \end{cases}\]
-These huge mass densities imply that the correction Einstein-Cartan theory gives is negligible even at nuclear densities, and therefore it's deviation from general relativity only need to be consider in the study of gravitational collapse, big bang, and quantum gravity, but since the formulation did not take any non-gravitational effects into consideration, those are also also the situations where the theory fails.
+Thus, the deviation of Einstein-Cartan theory from general relativity is non-negligible only at these extremely large mass densities, which might well be unphysical. 
 
+\bibliography{ref}{}
+\bibliographystyle{plain}
 \end{document}
