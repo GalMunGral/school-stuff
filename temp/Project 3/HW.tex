@@ -13,9 +13,8 @@
 \maketitle
 \section{Target 1 Epilogue}
 \subsection{}
-The vulnerability lies in Line 18-29 of \texttt{/var/payroll/www/account.php}:
+The vulnerability lies in line 18-29 of \texttt{/var/payroll/www/account.php}:
 \begin{verbatim}
-// verify CSRF protection
 $expected = 1;
 $teststr = $_POST['account'].$_POST['challenge'].$_POST['routing'];
 for ($i = 0; $i < strlen($teststr); $i++) {
@@ -31,13 +30,13 @@ if ($_POST['response'] != $expected) {
 \end{verbatim}
 
 \subsection{}
-The given PHP code attempts to prevent CSRF by checking the submitted value of the hidden \texttt{csrfr} field against the value computed from \texttt{account}, \texttt{routing} fields and the CSRF token, which is first inserted into the \texttt{csrfc} field when the form is created and later submitted in the POST request. The vulnerability is that the server never checks the validity of the submitted CSRF token, probably under the assumption that a normal user would never tamper with a hidden field. The purpose of a randomly generated CSRF token is that it is a piece of information that an attacker cannot forge, therefore not validating the token completely defeats the purpose of having such a token. An attacker who knows the algorithm, perhaps by having access to the source code, can use essentially any value for the CSRF token, as long as the \texttt{csrfr} field is computed using the correct algorithm, thereby bypassing the CSRF prevention.
+The PHP server attempts to prevent CSRF by checking the submitted \texttt{csrfr} value against the value computed from \texttt{account}, \texttt{routing} and \texttt{csrfc} fields. The vulnerability is that, although the \texttt{csrfc} field is supposed to contain the CSRF token, the server never checks its validity, and therefore an attacker who has figured out the verification algorithm can put \textit{any} value in the \texttt{csrfc} field, as long as the \texttt{csrfr} value is computed correctly based on \texttt{csrfc}.
 
 \subsection{}
-Since there is already a CSRF token in place, the easiest step to fix the vulnerability is simply to validate the submitted token first. For example, the conditional statement
+Since the server is already issuing CSRF tokens, the easiest step to fix the vulnerability is to simply check the submitted token. For example, the conditional statement
 \begin{verbatim}
 if ($_POST['response'] != $expected) {
-    // Reject request
+    // Reject
 }
 \end{verbatim}
 can be changed to
@@ -46,7 +45,7 @@ if (
     $_POST['challenge'] != $_SESSION['csrf_token'] or 
     $_POST['response'] != $expected
 ) {
-    // Reject request
+    // Reject
 }
 \end{verbatim}
 
@@ -59,7 +58,7 @@ The vulnerability lies in line 32 (and also 6-13) of \texttt{/var/payroll/www/in
 \item The first vulnerability is in line 6-13 in the handling of POST requests:
 \begin{verbatim}
 $action = @$_POST['action'];
-if ($action == 'login') {
+if ($action == 'login') { 
     if($_POST['U3B...Z2c'] == 'U3B...Z2c') {
         $auth->login(...);
     }
@@ -67,59 +66,48 @@ if ($action == 'login') {
     $auth->register(...);
 }
 \end{verbatim}
-This is problematic because if the \texttt{action} field is omitted or does not match either \texttt{`login'} or \texttt{`register'}, or if \texttt{action} is set to \texttt{`login'} but the \texttt{U3B...Z2c} field does not match, the page still renders even though no login or registration is performed, which makes exploiting the following vulnerability possible.
-\item The \textit{main} vulnerability in on line 32:
+This is problematic because if control falls through (for example, if the \texttt{action} field is omitted), the page still renders, thereby exposing the XSS vulnerability.
+\item The XSS vulnerability is on line 32:
 \begin{verbatim}
 <input type="text" name="login" value="<?php echo @$_POST['login'] ?>">
 \end{verbatim}
-Here the \texttt{`login'} field value from POST request is \textit{directly} echoed into the rendered HTML, therefore an attacker can simply put whatever malicious HTML that he/she wants to inject at this location in the \texttt{'login'} field of the POST request, as long as all opening tags that come before will be closed and all closing tags the come after will have corresponding opening tags.
+The user submitted \texttt{`login'} value is echoed as is into the rendered document. Therefore, if an attacker puts malicious HTML instead of a valid username in the POST request, he/she can alter the content of the document at will, as long as the syntax of the document after injection is still valid.
 \end{itemize}
 \subsection{}
-The special characters such as \texttt{<}, \texttt{>} and \texttt{"} which have special meanings to HTML parsers need to be escaped using HTML encoding. For example, \texttt{<} should be replaced with \texttt{\&lt;}, and \texttt{"} with \texttt{\&quot;}. This will ensure that user inputs can never alter the structure of the document when inserted directly.
+The special characters such as \texttt{<}, \texttt{>} and \texttt{"} which have syntactic meanings in HTML must be escaped using HTML encoding. For example, \texttt{<} should be replaced with \texttt{\&lt;}, and \texttt{"} with \texttt{\&quot;}. This can prevent user inputs from being recognized as HTML.
 
 \section{Target 3 Epilogue}
 \subsection{}
-The vulnerability lies in line 28-43 of \texttt{/var/payroll/www/includes/auth.php} in function \texttt{sqli\_filter}
+The vulnerability lies in line 28-43 of \texttt{/var/payroll/www/includes/auth.php}
 \subsection{}
-The given PHP code does have SQL injection prevention implemented, however the problem is that the list of forbidden character sequences is not exhaustive. The loophole that makes this particular exploit possible is that single quotes are not checked. Thus, it is possible to alter the \texttt{WHERE} clauses in the SQL statements. Suppose the \texttt{login} value is entered as follows
-\verb|username' OR ''='|, then the first SQL statement for looking up salt value becomes
+The server does have SQLi prevention, but the list of filtered substrings in function \verb|sqli_filter| is not exhaustive. Suppose the \texttt{login} value is entered as \verb|username' OR ''='|. Because single quotes are not forbidden, this input will pass the filter. The first SQL statement then becomes
 \begin{verbatim}
 SELECT salt FROM users WHERE eid='username' OR ''=''
 \end{verbatim}
-Since \verb|''=''| always evalues to true, this is equivalent to
+Since \verb|''=''| always evaluates to true, this is still the same as
 \begin{verbatim}
 SELECT salt FROM users WHERE eid='username'
 \end{verbatim}
-which will not cause any problem. The second SQL statementm, however, becomes
+The second SQL statement, however, becomes
 \begin{verbatim}
 ... WHERE eid='username' OR ''='' AND password='$hash'
 \end{verbatim}
-Since \verb|AND| will be evaluated before \verb OR, this is the same as
+Because \verb|AND| has a higher precedence than \verb|OR|, this statement is equivalent to
 \begin{verbatim}
 ... WHERE eid='username' OR password='$hash'
 \end{verbatim}
-Therefore, even if the password is incorrect, this query will still returns the desired row, provided that \verb|eid| exists in the databases. 
-Since the success of login depends solely on the result of this query, as shown in the following code:
-\begin{verbatim}
-$userdata = $this->db->query($sql)->next();
-if ($userdata) {
-    ... // Logged in
-} else {
-    ...
-}
-\end{verbatim}
-this exploit guarantees that the user, even with incorrect password, can be logged in successfully.
+This query will return the desired row even if the password is incorrect, because \verb|eid='username' OR FALSE| is equivalent to \verb|eid='username'|. Thus, by appending \verb|' OR ''='| to a valid username, login can be achieved without knowing the password.
 
 \subsection{}
-One can simply add the following line to function \verb|sqli_filter($string)| to prevent this exploit:
+As a countermeasure to this particular exploit, one can simply add in function \verb|sqli_filter|:
 \begin{verbatim}
-$filtered_string = str_replace("'","",$filtered_string);
+$filtered_string = str_replace("'", "", $filtered_string);
 \end{verbatim} 
-However, in order to prevent SQL injections in general, the best practices for PHP include:
+However, in order to prevent SQL injections in general in PHP, it is better to:
 \begin{itemize}
-\item Use prepared statements provided by PDO, MySQLi and other libraries.
-\item Check if the given input has the expected data type, using built-in input validating functions such as \verb|is_numeric()|, \verb|ctype_digit()| and Perl compatible Regular Expressions support.
+\item Use prepared statements provided by libraries such as PDO and MySQLi.
+\item Check if the given input has the expected data type using built-in input validating functions such as \verb|is_numeric()|, \verb|ctype_digit()|, or Perl compatible Regular Expressions support.
 \item If numerical input is expected, silently change its type using \verb|settype()| or \verb|sprintf()|.
-\item Quote each non numeric user supplied value with the database-specific string escape function (e.g.\verb|mysql_real_escape_string()|, \verb|sqlite_escape_string()|, etc.). 
+\item Quote each non numeric user supplied value with the database-specific string escape function, such as \verb|mysql_real_escape_string()| and \verb|sqlite_escape_string()|.
 \end{itemize}
 \end{document}
